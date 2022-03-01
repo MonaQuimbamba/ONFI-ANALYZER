@@ -1,28 +1,28 @@
-#include "SimpleSerialAnalyzer.h"
-#include "SimpleSerialAnalyzerSettings.h"
-#include <AnalyzerChannelData.h>
+#include "ONFIAnalyzer.h"
+#include "ONFIAnalyzerSettings.h"
+#include "AnalyzerSDK/include/AnalyzerChannelData.h"
 
-SimpleSerialAnalyzer::SimpleSerialAnalyzer()
-:	Analyzer2(),  
-	mSettings( new SimpleSerialAnalyzerSettings() ),
+ONFIAnalyzer::ONFIAnalyzer()
+:	Analyzer2(),
+	mSettings( new ONFIAnalyzerSettings() ),
 	mSimulationInitilized( false )
 {
 	SetAnalyzerSettings( mSettings.get() );
 }
 
-SimpleSerialAnalyzer::~SimpleSerialAnalyzer()
+ONFIAnalyzer::~ONFIAnalyzer()
 {
 	KillThread();
 }
 
-void SimpleSerialAnalyzer::SetupResults()
+void ONFIAnalyzer::SetupResults()
 {
-	mResults.reset( new SimpleSerialAnalyzerResults( this, mSettings.get() ) );
+	mResults.reset( new ONFIAnalyzerResults( this, mSettings.get() ) );
 	SetAnalyzerResults( mResults.get() );
 	mResults->AddChannelBubblesWillAppearOn( mSettings->mInputChannel );
 }
 
-void SimpleSerialAnalyzer::WorkerThread()
+void ONFIAnalyzer::WorkerThread()
 {
 	mSampleRateHz = GetSampleRate();
 
@@ -38,7 +38,7 @@ void SimpleSerialAnalyzer::WorkerThread()
 	{
 		U8 data = 0;
 		U8 mask = 1 << 7;
-		
+
 		mSerial->AdvanceToNextEdge(); //falling edge -- beginning of the start bit
 
 		U64 starting_sample = mSerial->GetSampleNumber();
@@ -59,7 +59,7 @@ void SimpleSerialAnalyzer::WorkerThread()
 		}
 
 
-		//we have a byte to save. 
+		//we have a byte to save.
 		Frame frame;
 		frame.mData1 = data;
 		frame.mFlags = 0;
@@ -72,12 +72,12 @@ void SimpleSerialAnalyzer::WorkerThread()
 	}
 }
 
-bool SimpleSerialAnalyzer::NeedsRerun()
+bool ONFIAnalyzer::NeedsRerun()
 {
 	return false;
 }
 
-U32 SimpleSerialAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor** simulation_channels )
+U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor** simulation_channels )
 {
 	if( mSimulationInitilized == false )
 	{
@@ -88,24 +88,24 @@ U32 SimpleSerialAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 
 	return mSimulationDataGenerator.GenerateSimulationData( minimum_sample_index, device_sample_rate, simulation_channels );
 }
 
-U32 SimpleSerialAnalyzer::GetMinimumSampleRateHz()
+U32 ONFIAnalyzer::GetMinimumSampleRateHz()
 {
 	return mSettings->mBitRate * 4;
 }
 
-const char* SimpleSerialAnalyzer::GetAnalyzerName() const
+const char* ONFIAnalyzer::GetAnalyzerName() const
 {
-	return "Simple Serial";
+	return "Protocole-ONFI";
 }
 
 const char* GetAnalyzerName()
 {
-	return "Simple Serial";
+	return "Protocole-ONFI";
 }
 
 Analyzer* CreateAnalyzer()
 {
-	return new SimpleSerialAnalyzer();
+	return new ONFIAnalyzer();
 }
 
 void DestroyAnalyzer( Analyzer* analyzer )
