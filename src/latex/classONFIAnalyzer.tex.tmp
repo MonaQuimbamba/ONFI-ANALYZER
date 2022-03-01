@@ -1,0 +1,64 @@
+\hypertarget{classONFIAnalyzer}{}\section{O\+N\+F\+I\+Analyzer Class Reference}
+\label{classONFIAnalyzer}\index{O\+N\+F\+I\+Analyzer@{O\+N\+F\+I\+Analyzer}}
+
+
+Inheritance diagram for O\+N\+F\+I\+Analyzer\+:
+% FIG 0
+
+
+Collaboration diagram for O\+N\+F\+I\+Analyzer\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_a69ba39c259a7f9bf229cc0f8902816cf}\label{classONFIAnalyzer_a69ba39c259a7f9bf229cc0f8902816cf}} 
+virtual void {\bfseries Setup\+Results} ()
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_addc570440eb966edc508b34379af2aa4}\label{classONFIAnalyzer_addc570440eb966edc508b34379af2aa4}} 
+virtual void {\bfseries Worker\+Thread} ()
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_aee37a5a2ffaa137c4e2f72185123ea93}\label{classONFIAnalyzer_aee37a5a2ffaa137c4e2f72185123ea93}} 
+virtual U32 {\bfseries Generate\+Simulation\+Data} (U64 newest\+\_\+sample\+\_\+requested, U32 sample\+\_\+rate, Simulation\+Channel\+Descriptor $\ast$$\ast$simulation\+\_\+channels)
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_a11c358e5170af89a8697ccdcaba7ddea}\label{classONFIAnalyzer_a11c358e5170af89a8697ccdcaba7ddea}} 
+virtual U32 {\bfseries Get\+Minimum\+Sample\+Rate\+Hz} ()
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_ad82e36488b222d28d75f0237eac6e343}\label{classONFIAnalyzer_ad82e36488b222d28d75f0237eac6e343}} 
+virtual const char $\ast$ {\bfseries Get\+Analyzer\+Name} () const
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_a98a330c789f1ee68d3c6da4cb1e82d73}\label{classONFIAnalyzer_a98a330c789f1ee68d3c6da4cb1e82d73}} 
+virtual bool {\bfseries Needs\+Rerun} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_a24a74dde15617be293c2365b0b9626ea}\label{classONFIAnalyzer_a24a74dde15617be293c2365b0b9626ea}} 
+std\+::auto\+\_\+ptr$<$ \hyperlink{classONFIAnalyzerSettings}{O\+N\+F\+I\+Analyzer\+Settings} $>$ {\bfseries m\+Settings}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_ae389749159d64459a8b01dbb10f02268}\label{classONFIAnalyzer_ae389749159d64459a8b01dbb10f02268}} 
+std\+::auto\+\_\+ptr$<$ \hyperlink{classONFIAnalyzerResults}{O\+N\+F\+I\+Analyzer\+Results} $>$ {\bfseries m\+Results}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_ad62a2a864a3de1b2c09ef2e2340c9a0d}\label{classONFIAnalyzer_ad62a2a864a3de1b2c09ef2e2340c9a0d}} 
+Analyzer\+Channel\+Data $\ast$ {\bfseries m\+Serial}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_a36652327dcd1d5b41de083963c3130cf}\label{classONFIAnalyzer_a36652327dcd1d5b41de083963c3130cf}} 
+\hyperlink{classONFISimulationDataGenerator}{O\+N\+F\+I\+Simulation\+Data\+Generator} {\bfseries m\+Simulation\+Data\+Generator}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_ab7f8a8768d772b03021fcf6b45d270ab}\label{classONFIAnalyzer_ab7f8a8768d772b03021fcf6b45d270ab}} 
+bool {\bfseries m\+Simulation\+Initilized}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_aa271ef00237fe962404c40e400db7fd2}\label{classONFIAnalyzer_aa271ef00237fe962404c40e400db7fd2}} 
+U32 {\bfseries m\+Sample\+Rate\+Hz}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_afe4e24389fbc8ba700a63bd5a420fe83}\label{classONFIAnalyzer_afe4e24389fbc8ba700a63bd5a420fe83}} 
+U32 {\bfseries m\+Start\+Of\+Stop\+Bit\+Offset}
+\item 
+\mbox{\Hypertarget{classONFIAnalyzer_af4b4002e071566968c6900d8caf7ec59}\label{classONFIAnalyzer_af4b4002e071566968c6900d8caf7ec59}} 
+U32 {\bfseries m\+End\+Of\+Stop\+Bit\+Offset}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+O\+N\+F\+I\+Analyzer.\+h\item 
+O\+N\+F\+I\+Analyzer.\+cpp\end{DoxyCompactItemize}

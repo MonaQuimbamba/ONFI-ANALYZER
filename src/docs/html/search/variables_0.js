@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['manalyzer',['mAnalyzer',['../classONFIAnalyzerResults.html#a520bb2c84973ec274623e4ab33b5c468',1,'ONFIAnalyzerResults']]],
+  ['mbitrate',['mBitRate',['../classONFIAnalyzerSettings.html#a040f25d0e55801f283d529cea6fb3d69',1,'ONFIAnalyzerSettings']]],
+  ['mbitrateinterface',['mBitRateInterface',['../classONFIAnalyzerSettings.html#a9efaf0afb39461ccb0bb1288d82b5169',1,'ONFIAnalyzerSettings']]],
+  ['mendofstopbitoffset',['mEndOfStopBitOffset',['../classONFIAnalyzer.html#af4b4002e071566968c6900d8caf7ec59',1,'ONFIAnalyzer']]],
+  ['minputchannel',['mInputChannel',['../classONFIAnalyzerSettings.html#a7485946a7c5acc78cacb209c346c5319',1,'ONFIAnalyzerSettings']]],
+  ['minputchannelinterface',['mInputChannelInterface',['../classONFIAnalyzerSettings.html#a8d84341646e53473bce7625aef716e42',1,'ONFIAnalyzerSettings']]],
+  ['mresults',['mResults',['../classONFIAnalyzer.html#ae389749159d64459a8b01dbb10f02268',1,'ONFIAnalyzer']]],
+  ['msampleratehz',['mSampleRateHz',['../classONFIAnalyzer.html#aa271ef00237fe962404c40e400db7fd2',1,'ONFIAnalyzer']]],
+  ['mserial',['mSerial',['../classONFIAnalyzer.html#ad62a2a864a3de1b2c09ef2e2340c9a0d',1,'ONFIAnalyzer']]],
+  ['mserialsimulationdata',['mSerialSimulationData',['../classONFISimulationDataGenerator.html#aec0ee7342cf347a271edffb2307711fe',1,'ONFISimulationDataGenerator']]],
+  ['mserialtext',['mSerialText',['../classONFISimulationDataGenerator.html#ab3ffa1c00662a8c0dcea3e23ff8f62e5',1,'ONFISimulationDataGenerator']]],
+  ['msettings',['mSettings',['../classONFIAnalyzer.html#a24a74dde15617be293c2365b0b9626ea',1,'ONFIAnalyzer::mSettings()'],['../classONFIAnalyzerResults.html#aa06d97ad6905e9020761f0254efd80cd',1,'ONFIAnalyzerResults::mSettings()'],['../classONFISimulationDataGenerator.html#a5a17472db17e19d39d28e07d1663cf80',1,'ONFISimulationDataGenerator::mSettings()']]],
+  ['msimulationdatagenerator',['mSimulationDataGenerator',['../classONFIAnalyzer.html#a36652327dcd1d5b41de083963c3130cf',1,'ONFIAnalyzer']]],
+  ['msimulationinitilized',['mSimulationInitilized',['../classONFIAnalyzer.html#ab7f8a8768d772b03021fcf6b45d270ab',1,'ONFIAnalyzer']]],
+  ['msimulationsampleratehz',['mSimulationSampleRateHz',['../classONFISimulationDataGenerator.html#a5cbef596fa338e0e8cecda5b145e09c3',1,'ONFISimulationDataGenerator']]],
+  ['mstartofstopbitoffset',['mStartOfStopBitOffset',['../classONFIAnalyzer.html#afe4e24389fbc8ba700a63bd5a420fe83',1,'ONFIAnalyzer']]],
+  ['mstringindex',['mStringIndex',['../classONFISimulationDataGenerator.html#ad2206584861efe9be545e9a389b20db5',1,'ONFISimulationDataGenerator']]]
+];
