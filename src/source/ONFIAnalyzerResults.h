@@ -1,7 +1,7 @@
 #ifndef ONFI_ANALYZER_RESULTS
 #define ONFI_ANALYZER_RESULTS
 
-#include <../AnalyzerSDK/include/AnalyzerResults.h>
+#include "../AnalyzerSDK/include/AnalyzerResults.h"
 
 /**
 * @file ONFIAnalyzerResults.h

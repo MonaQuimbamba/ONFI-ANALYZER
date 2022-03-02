@@ -1,5 +1,5 @@
 #include "ONFIAnalyzerSettings.h"
-#include <../AnalyzerSDK/include/AnalyzerHelpers.h>
+#include "../AnalyzerSDK/include/AnalyzerHelpers.h"
 
 
 ONFIAnalyzerSettings::ONFIAnalyzerSettings()
