@@ -1,9 +1,9 @@
 #ifndef ONFI_ANALYZER_H
 #define ONFI_ANALYZER_H
 
-#include <AnalyzerSDK/include/Analyzer.h>
+#include <../AnalyzerSDK/include/Analyzer.h>
 #include "ONFIAnalyzerResults.h"
-#include "AnalyzerSDK/include/ONFISimulationDataGenerator.h"
+#include "../AnalyzerSDK/include/ONFISimulationDataGenerator.h"
 
 /**
 * @file ONFIAnalyzer.h

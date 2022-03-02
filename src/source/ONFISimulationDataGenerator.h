@@ -1,7 +1,7 @@
 #ifndef ONFI_SIMULATION_DATA_GENERATOR
 #define ONFI_SIMULATION_DATA_GENERATOR
 
-#include <AnalyzerSDK/include/SimulationChannelDescriptor.h>
+#include <../AnalyzerSDK/include/SimulationChannelDescriptor.h>
 #include <string>
 
 

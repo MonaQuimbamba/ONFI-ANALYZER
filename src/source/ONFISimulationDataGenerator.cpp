@@ -1,7 +1,7 @@
 #include "ONFISimulationDataGenerator.h"
 #include "ONFIAnalyzerSettings.h"
 
-#include <AnalyzerSDK/include/AnalyzerHelpers.h>
+#include <../AnalyzerSDK/include/AnalyzerHelpers.h>
 
 ONFISimulationDataGenerator::ONFISimulationDataGenerator()
 :	mSerialText( "My first analyzer, woo hoo!" ),

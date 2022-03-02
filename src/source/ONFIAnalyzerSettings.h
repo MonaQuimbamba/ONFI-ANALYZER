@@ -1,8 +1,8 @@
 #ifndef ONFI_ANALYZER_SETTINGS
 #define ONFI_ANALYZER_SETTINGS
 
-#include <AnalyzerSDK/include/AnalyzerSettings.h>
-#include <AnalyzerSDK/include/AnalyzerTypes.h>
+#include <../AnalyzerSDK/include/AnalyzerSettings.h>
+#include <../AnalyzerSDK/include/AnalyzerTypes.h>
 
 
 /**
@@ -16,7 +16,7 @@
 
 class ONFIAnalyzerSettings : public AnalyzerSettings
 {
-	
+
 public:
 	ONFIAnalyzerSettings();
 	virtual ~ONFIAnalyzerSettings();

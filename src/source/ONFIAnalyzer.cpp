@@ -1,6 +1,6 @@
 #include "ONFIAnalyzer.h"
 #include "ONFIAnalyzerSettings.h"
-#include "AnalyzerSDK/include/AnalyzerChannelData.h"
+#include "../AnalyzerSDK/include/AnalyzerChannelData.h"
 
 ONFIAnalyzer::ONFIAnalyzer()
 :	Analyzer2(),

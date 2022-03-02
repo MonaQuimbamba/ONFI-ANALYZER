@@ -12,15 +12,15 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(ExternalAnalyzerSDK)
 
-set(SOURCES 
-src/ONFIAnalyzer.cpp
-src/ONFIAnalyzer.h
-src/ONFIAnalyzerResults.cpp
-src/ONFIAnalyzerResults.h
-src/ONFIAnalyzerSettings.cpp
-src/ONFIAnalyzerSettings.h
-src/ONFISimulationDataGenerator.cpp
-src/ONFISimulationDataGenerator.h
+set(SOURCES
+src/source/ONFIAnalyzer.cpp
+src/source/ONFIAnalyzer.h
+src/source/ONFIAnalyzerResults.cpp
+src/source/ONFIAnalyzerResults.h
+src/source/ONFIAnalyzerSettings.cpp
+src/source/ONFIAnalyzerSettings.h
+src/source/ONFISimulationDataGenerator.cpp
+src/source/ONFISimulationDataGenerator.h
 )
 
 add_analyzer_plugin(${PROJECT_NAME} SOURCES ${SOURCES})
