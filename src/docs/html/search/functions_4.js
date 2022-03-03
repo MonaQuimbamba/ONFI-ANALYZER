@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loadsettings',['LoadSettings',['../classONFIAnalyzerSettings.html#a4f052e7c52483e323306de37910f4fcb',1,'ONFIAnalyzerSettings']]]
+  ['lodsettings',['LodSettings',['../classONFIAnalyzerSettings.html#a9bf1107fba9b872f2a18c43b1bdf4a05',1,'ONFIAnalyzerSettings']]]
 ];

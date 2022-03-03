@@ -23,7 +23,7 @@ public:
 
 	virtual bool SetSettingsFromInterfaces();
 	void UpdateInterfacesFromSettings();
-	virtual void LoadSettings( const char* settings );
+	virtual void LodSettings( const char* settings );
 	virtual const char* SaveSettings();
 
 
