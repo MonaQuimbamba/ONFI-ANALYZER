@@ -1,7 +1,7 @@
 # Saleae Analyzer SDK ONFI Analyzer
 
 
-## Pour commencer 
+## Pour commencer
 
 ### Windows
 
