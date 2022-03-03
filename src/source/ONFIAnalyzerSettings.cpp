@@ -2,8 +2,24 @@
 #include "../AnalyzerSDK/include/AnalyzerHelpers.h"
 
 /**
-* @brief consctructor it'll build the settings for our analyzer , set up  each signal on one channel
+* @brief consctructor
+*  @details it'll build the settings for our analyzer , set up  each signal on one channel
+*  @param   mALEChannel  Address latch enable: Loads an address from I/O[7:0] into the address register
+*  @param mCEChannel Chip enable: Enables or disables one or more die (LUNs) in a target.
+*  @param mCLEChannel Command latch enable: Loads a command from I/O[7:0] into the command register.
+*  @param mLOCKChannel When LOCK is HIGH during power-up, the BLOCK LOCK function is enabled. To disable the
+	BLOCK LOCK, connect LOCK to VSS during power-up, or leave it disconnected (internal
+	pull-down).
 *
+*  @param mREChannel Read enable: Transfers serial data from the NAND Flash to the host system.
+*  @param mWEChannel Write enable: Transfers commands, addresses, and serial data from the host system to the NAND Flash.
+*
+*  @param mWPChannel Write protect: Enables or disables array PROGRAM and ERASE operations
+*  @param mIOChannel Data inputs/outputs: The bidirectional I/Os transfer address, data, and command infor-
+mation.
+*  @param mRBChannel Ready/busy: An open-drain, active-low output that requires an external pull-up resistor.
+This signal indicates target array activity.
+*  @param  mBitRate
 *********************************/
 ONFIAnalyzerSettings::ONFIAnalyzerSettings():
 
@@ -112,7 +128,8 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings():
 }
 
 /**
-*  @brief Destructor we won't to do anything
+*  @brief Destructor
+* @details we won't to do anything
 *************************/
 ONFIAnalyzerSettings::~ONFIAnalyzerSettings()
 {
