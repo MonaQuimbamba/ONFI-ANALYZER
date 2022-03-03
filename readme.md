@@ -1,7 +1,7 @@
 # Saleae Analyzer SDK ONFI Analyzer
 
 
-## Prerequisites
+## Pour commencer 
 
 ### Windows
 
