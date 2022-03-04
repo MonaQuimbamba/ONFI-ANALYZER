@@ -19,7 +19,10 @@ void ONFIAnalyzer::SetupResults()
 {
 	mResults.reset( new ONFIAnalyzerResults( this, mSettings.get() ) );
 	SetAnalyzerResults( mResults.get() );
-	mResults->AddChannelBubblesWillAppearOn( mSettings->mALEChannel );
+	if( mSettings->mALEChannel != UNDEFINED_CHANNEL )
+		mResults->AddChannelBubblesWillAppearOn( mSettings->mALEChannel );
+	if( mSettings->mCEChannel != UNDEFINED_CHANNEL )
+		mResults->AddChannelBubblesWillAppearOn( mSettings->mCEChannel );
 }
 
 void ONFIAnalyzer::WorkerThread()
@@ -27,6 +30,7 @@ void ONFIAnalyzer::WorkerThread()
 	mSampleRateHz = GetSampleRate();
 
 	mALEChannel = GetAnalyzerChannelData( mSettings->mALEChannel );
+	//mCEChannel = GetAnalyzerChannelData( mSettings->mCEChannel );
 
 	if( mALEChannel->GetBitState() == BIT_LOW )
 		mALEChannel->AdvanceToNextEdge();

@@ -25,7 +25,15 @@ This signal indicates target array activity.
 
 
 ONFIAnalyzerSettings::ONFIAnalyzerSettings()
-:	 mALEChannel( UNDEFINED_CHANNEL )
+:	 mALEChannel( UNDEFINED_CHANNEL ),
+	mCEChannel( UNDEFINED_CHANNEL ),
+	mCLEChannel( UNDEFINED_CHANNEL ),
+	mLOCKChannel( UNDEFINED_CHANNEL ),
+	mREChannel( UNDEFINED_CHANNEL ),
+	mWEChannel( UNDEFINED_CHANNEL ),
+	mWPChannel( UNDEFINED_CHANNEL ),
+	mIOChannel( UNDEFINED_CHANNEL ),
+	mRBChannel( UNDEFINED_CHANNEL )
 {
 
 		mALEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
@@ -33,16 +41,61 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mALEChannelInterface->SetChannel( mALEChannel );
 		mALEChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
+	mCEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mCEChannelInterface->SetTitleAndTooltip( "CE", "INPUT , Chip enable" );
+	mCEChannelInterface->SetChannel( mCEChannel );
+	mCEChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+	mCLEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mCLEChannelInterface->SetTitleAndTooltip( "CLE", "INPUT, Command latch enable" );
+	mCLEChannelInterface->SetChannel( mCLEChannel );
+	mCLEChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+
+	mLOCKChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mLOCKChannelInterface->SetTitleAndTooltip( "LOCK", "INPUT, " );
+	mLOCKChannelInterface->SetChannel( mLOCKChannel );
+	mLOCKChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+
+	mREChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mREChannelInterface->SetTitleAndTooltip( "RE", "INPUT, READ enable" );
+	mREChannelInterface->SetChannel( mREChannel );
+	mREChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+	mWEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mWEChannelInterface->SetTitleAndTooltip( "WE", "INPUT, Write enable " );
+	mWEChannelInterface->SetChannel( mWEChannel );
+	mWEChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+
+	mWPChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mWPChannelInterface->SetTitleAndTooltip( "WP", "INPUT, Write protect" );
+	mWPChannelInterface->SetChannel( mWPChannel );
+	mWPChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+	mIOChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mIOChannelInterface->SetTitleAndTooltip( "IO", "I/O, Data inputs/outputs" );
+	mIOChannelInterface->SetChannel( mIOChannel );
+	mIOChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+	mRBChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mRBChannelInterface->SetTitleAndTooltip( "RB", "OUTPUT, Ready/busy" );
+	mRBChannelInterface->SetChannel( mRBChannel );
+	mRBChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
+
+
 
 	AddInterface( mALEChannelInterface.get() );
-	/*AddInterface( mCEChannelInterface.get() );
+	AddInterface( mCEChannelInterface.get() );
 	AddInterface( mCLEChannelInterface.get() );
 	AddInterface( mLOCKChannelInterface.get() );
 	AddInterface( mREChannelInterface.get() );
 	AddInterface( mWEChannelInterface.get() );
 	AddInterface( mWPChannelInterface.get() );
 	AddInterface( mIOChannelInterface.get() );
-	AddInterface( mRBChannelInterface.get() );*/
+	AddInterface( mRBChannelInterface.get() );
 
 
 	//AddInterface( mBitRateInterface.get() );
@@ -54,6 +107,14 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 
 	ClearChannels();
 	AddChannel( mALEChannel, "ALE", false );
+	AddChannel( mCEChannel, "CE", false );
+	AddChannel( mCLEChannel, "CLE", false );
+	AddChannel( mLOCKChannel, "LOCK", false );
+	AddChannel( mREChannel, "RE", false );
+	AddChannel( mWEChannel, "WE", false );
+	AddChannel( mWPChannel, "WP", false );
+	AddChannel( mIOChannel, "I/O", false );
+	AddChannel( mRBChannel, "RB", false );
 
 }
 

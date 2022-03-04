@@ -30,7 +30,16 @@ public:
 protected: //vars
 	std::auto_ptr< ONFIAnalyzerSettings > mSettings;
 	std::auto_ptr< ONFIAnalyzerResults > mResults;
+
 	AnalyzerChannelData* mALEChannel;
+	AnalyzerChannelData* mCEChannel;
+	AnalyzerChannelData* mCLEChannel;
+	AnalyzerChannelData* mLOCKChannel;
+	AnalyzerChannelData* mREChannel;
+	AnalyzerChannelData* mWEChannel;
+	AnalyzerChannelData* mWPChannel;
+	AnalyzerChannelData* mIOChannel;
+	AnalyzerChannelData* mRBChannel;
 
 	ONFISimulationDataGenerator mSimulationDataGenerator;
 	bool mSimulationInitilized;
