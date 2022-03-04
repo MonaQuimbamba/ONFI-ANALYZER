@@ -1,7 +1,7 @@
 #include "ONFISimulationDataGenerator.h"
 #include "ONFIAnalyzerSettings.h"
 
-#include "../AnalyzerSDK/include/AnalyzerHelpers.h"
+#include <AnalyzerHelpers.h>
 
 ONFISimulationDataGenerator::ONFISimulationDataGenerator()
 :	mSerialText( "My first analyzer, woo hoo!" ),
@@ -18,7 +18,7 @@ void ONFISimulationDataGenerator::Initialize( U32 simulation_sample_rate, ONFIAn
 	mSimulationSampleRateHz = simulation_sample_rate;
 	mSettings = settings;
 
-	mSerialSimulationData.SetChannel( mSettings->mInputChannel );
+	mSerialSimulationData.SetChannel( mSettings->mALEChannel );
 	mSerialSimulationData.SetSampleRate( simulation_sample_rate );
 	mSerialSimulationData.SetInitialBitState( BIT_HIGH );
 }
@@ -38,7 +38,7 @@ U32 ONFISimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requ
 
 void ONFISimulationDataGenerator::CreateSerialByte()
 {
-	U32 samples_per_bit = mSimulationSampleRateHz / mSettings->mBitRate;
+	U32 samples_per_bit = mSimulationSampleRateHz ;
 
 	U8 byte = mSerialText[ mStringIndex ];
 	mStringIndex++;
