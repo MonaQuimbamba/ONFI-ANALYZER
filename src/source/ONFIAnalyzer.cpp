@@ -1,6 +1,6 @@
 #include "ONFIAnalyzer.h"
 #include "ONFIAnalyzerSettings.h"
-#include "../AnalyzerSDK/include/AnalyzerChannelData.h"
+#include <AnalyzerChannelData.h>
 
 ONFIAnalyzer::ONFIAnalyzer()
 :	Analyzer2(),
@@ -19,41 +19,41 @@ void ONFIAnalyzer::SetupResults()
 {
 	mResults.reset( new ONFIAnalyzerResults( this, mSettings.get() ) );
 	SetAnalyzerResults( mResults.get() );
-	mResults->AddChannelBubblesWillAppearOn( mSettings->mInputChannel );
+	mResults->AddChannelBubblesWillAppearOn( mSettings->mALEChannel );
 }
 
 void ONFIAnalyzer::WorkerThread()
 {
 	mSampleRateHz = GetSampleRate();
 
-	mSerial = GetAnalyzerChannelData( mSettings->mInputChannel );
+	mALEChannel = GetAnalyzerChannelData( mSettings->mALEChannel );
 
-	if( mSerial->GetBitState() == BIT_LOW )
-		mSerial->AdvanceToNextEdge();
+	if( mALEChannel->GetBitState() == BIT_LOW )
+		mALEChannel->AdvanceToNextEdge();
 
-	U32 samples_per_bit = mSampleRateHz / mSettings->mBitRate;
-	U32 samples_to_first_center_of_first_data_bit = U32( 1.5 * double( mSampleRateHz ) / double( mSettings->mBitRate ) );
+	U32 samples_per_bit = mSampleRateHz ;
+	U32 samples_to_first_center_of_first_data_bit = U32( 1.5 * double( mSampleRateHz )) ;
 
 	for( ; ; )
 	{
 		U8 data = 0;
 		U8 mask = 1 << 7;
 
-		mSerial->AdvanceToNextEdge(); //falling edge -- beginning of the start bit
+		mALEChannel->AdvanceToNextEdge(); //falling edge -- beginning of the start bit
 
-		U64 starting_sample = mSerial->GetSampleNumber();
+		U64 starting_sample = mALEChannel->GetSampleNumber();
 
-		mSerial->Advance( samples_to_first_center_of_first_data_bit );
+		mALEChannel->Advance( samples_to_first_center_of_first_data_bit );
 
 		for( U32 i=0; i<8; i++ )
 		{
 			//let's put a dot exactly where we sample this bit:
-			mResults->AddMarker( mSerial->GetSampleNumber(), AnalyzerResults::Dot, mSettings->mInputChannel );
+			mResults->AddMarker( mALEChannel->GetSampleNumber(), AnalyzerResults::Dot, mSettings->mALEChannel );
 
-			if( mSerial->GetBitState() == BIT_HIGH )
+			if( mALEChannel->GetBitState() == BIT_HIGH )
 				data |= mask;
 
-			mSerial->Advance( samples_per_bit );
+			mALEChannel->Advance( samples_per_bit );
 
 			mask = mask >> 1;
 		}
@@ -64,7 +64,7 @@ void ONFIAnalyzer::WorkerThread()
 		frame.mData1 = data;
 		frame.mFlags = 0;
 		frame.mStartingSampleInclusive = starting_sample;
-		frame.mEndingSampleInclusive = mSerial->GetSampleNumber();
+		frame.mEndingSampleInclusive = mALEChannel->GetSampleNumber();
 
 		mResults->AddFrame( frame );
 		mResults->CommitResults();
@@ -90,17 +90,17 @@ U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_s
 
 U32 ONFIAnalyzer::GetMinimumSampleRateHz()
 {
-	return mSettings->mBitRate * 4;
+	return 67 * 4;
 }
 
 const char* ONFIAnalyzer::GetAnalyzerName() const
 {
-	return "Protocole-ONFI";
+	return "ONFI Protocol";
 }
 
 const char* GetAnalyzerName()
 {
-	return "Protocole-ONFI";
+	return "ONFI Protocol";
 }
 
 Analyzer* CreateAnalyzer()

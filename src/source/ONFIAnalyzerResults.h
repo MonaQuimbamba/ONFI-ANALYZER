@@ -1,7 +1,7 @@
 #ifndef ONFI_ANALYZER_RESULTS
 #define ONFI_ANALYZER_RESULTS
 
-#include "../AnalyzerSDK/include/AnalyzerResults.h"
+#include <AnalyzerResults.h>
 
 /**
 * @file ONFIAnalyzerResults.h
@@ -9,8 +9,6 @@
 *  variety of uses. Here we'll start thinking about the format that our results will be saved in.
 *
 ************************/
-
-
 class ONFIAnalyzer;
 class ONFIAnalyzerSettings;
 

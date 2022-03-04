@@ -1,7 +1,7 @@
 #ifndef ONFI_ANALYZER_H
 #define ONFI_ANALYZER_H
 
-#include "../AnalyzerSDK/include/Analyzer.h"
+#include <Analyzer.h>
 #include "ONFIAnalyzerResults.h"
 #include "ONFISimulationDataGenerator.h"
 
@@ -10,6 +10,7 @@
 * @breif  The main thing you’ll do here
 * is translate data streams into results, based on our protocol.
 ***/
+
 class ONFIAnalyzerSettings;
 class ANALYZER_EXPORT ONFIAnalyzer : public Analyzer2
 {
@@ -29,7 +30,7 @@ public:
 protected: //vars
 	std::auto_ptr< ONFIAnalyzerSettings > mSettings;
 	std::auto_ptr< ONFIAnalyzerResults > mResults;
-	AnalyzerChannelData* mSerial;
+	AnalyzerChannelData* mALEChannel;
 
 	ONFISimulationDataGenerator mSimulationDataGenerator;
 	bool mSimulationInitilized;
