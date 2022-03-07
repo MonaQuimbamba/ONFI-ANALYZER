@@ -6,8 +6,8 @@
 #include <fstream>
 
 /**
-*
-*
+* @brief Consctructor
+*  @details ...
 *
 ***************************************/
 ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSettings* settings )
@@ -16,11 +16,19 @@ ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSe
 	mAnalyzer( analyzer )
 {
 }
-
+/**
+* @brief Destructor
+*  @details ...
+*
+***************************************/
 ONFIAnalyzerResults::~ONFIAnalyzerResults()
 {
 }
 
+/**
+* @brief function GenerateBubbleText
+* @details 
+***************************/
 void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base )
 {
 	ClearResultStrings();

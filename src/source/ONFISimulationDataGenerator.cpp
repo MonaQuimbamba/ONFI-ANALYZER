@@ -8,7 +8,7 @@
 *  @details ...
 ***/
 ONFISimulationDataGenerator::ONFISimulationDataGenerator()
-:	mSerialText( "My first analyzer, woo hoo!" ),
+:	mALEText( "My first analyzer, woo hoo!" ),
 	mStringIndex( 0 )
 {
 }
@@ -34,7 +34,7 @@ void ONFISimulationDataGenerator::Initialize( U32 simulation_sample_rate,
 			/*
 			*  not look at before done
 			*/
-			if( settings->mMisoChannel != UNDEFINED_CHANNEL )
+			if( settings->mALEChannel != UNDEFINED_CHANNEL )
 				  mALESimulationData = onfiSimulationChannels.Add( settings->mALEChannel, mSimulationSampleRateHz, BIT_HIGH );
 			else
 					mALESimulationData = NULL;
@@ -50,7 +50,7 @@ U32 ONFISimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requ
 {
 			U64 adjusted_largest_sample_requested = AnalyzerHelpers::AdjustSimulationTargetSample( largest_sample_requested, sample_rate, mSimulationSampleRateHz );
 
-    // looak at doc to add new generate data 
+    // looak at doc to add new generate data
 		/*	while( mALESimulationData.GetCurrentSampleNumber() < adjusted_largest_sample_requested )
 			{
 				CreateALEByte();
@@ -67,7 +67,7 @@ void ONFISimulationDataGenerator::CreateALEByte()
 
 	U8 byte = mALEText[ mStringIndex ];
 	mStringIndex++;
-	if( mStringIndex == mALEText.size() )
+	/*if( mStringIndex == mALEText.size() )
 		mStringIndex = 0;
 
 	//we're currenty high
@@ -92,5 +92,5 @@ void ONFISimulationDataGenerator::CreateALEByte()
 	mALESimulationData.TransitionIfNeeded( BIT_HIGH ); //we need to end high
 
 	//lets pad the end a bit for the stop bit:
-	mALESimulationData.Advance( samples_per_bit );
+	mALESimulationData.Advance( samples_per_bit );*/
 }
