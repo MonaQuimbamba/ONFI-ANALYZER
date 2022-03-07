@@ -5,6 +5,11 @@
 #include <iostream>
 #include <fstream>
 
+/**
+*
+*
+*
+***************************************/
 ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSettings* settings )
 :	AnalyzerResults(),
 	mSettings( settings ),
@@ -39,7 +44,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 	for( U32 i=0; i < num_frames; i++ )
 	{
 		Frame frame = GetFrame( i );
-		
+
 		char time_str[128];
 		AnalyzerHelpers::GetTimeString( frame.mStartingSampleInclusive, trigger_sample, sample_rate, time_str, 128 );
 
