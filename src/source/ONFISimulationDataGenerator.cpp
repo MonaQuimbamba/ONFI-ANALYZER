@@ -3,69 +3,94 @@
 
 #include <AnalyzerHelpers.h>
 
+/**
+* @brief Consctructor
+*  @details ...
+***/
 ONFISimulationDataGenerator::ONFISimulationDataGenerator()
 :	mSerialText( "My first analyzer, woo hoo!" ),
 	mStringIndex( 0 )
 {
 }
-
+/**
+* @brief Destructor
+*  @details ...
+***/
 ONFISimulationDataGenerator::~ONFISimulationDataGenerator()
 {
 }
 
-void ONFISimulationDataGenerator::Initialize( U32 simulation_sample_rate, ONFIAnalyzerSettings* settings )
+/**
+*  @brief This function provides  the state of things
+* as they are going to be when we start simulating.
+* on our channel
+**/
+void ONFISimulationDataGenerator::Initialize( U32 simulation_sample_rate,
+	 ONFIAnalyzerSettings* settings )
 {
-	mSimulationSampleRateHz = simulation_sample_rate;
-	mSettings = settings;
+			mSimulationSampleRateHz = simulation_sample_rate;
+			mSettings = settings;
 
-	mSerialSimulationData.SetChannel( mSettings->mALEChannel );
-	mSerialSimulationData.SetSampleRate( simulation_sample_rate );
-	mSerialSimulationData.SetInitialBitState( BIT_HIGH );
+			/*
+			*  not look at before done
+			*/
+			if( settings->mMisoChannel != UNDEFINED_CHANNEL )
+				  mALESimulationData = onfiSimulationChannels.Add( settings->mALEChannel, mSimulationSampleRateHz, BIT_HIGH );
+			else
+					mALESimulationData = NULL;
+
 }
 
-U32 ONFISimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requested, U32 sample_rate, SimulationChannelDescriptor** simulation_channel )
+/**
+* @brief this function is repeatedly called to request mores simulated data
+*****/
+U32 ONFISimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requested,
+	 U32 sample_rate,
+	  SimulationChannelDescriptor** simulation_channel )
 {
-	U64 adjusted_largest_sample_requested = AnalyzerHelpers::AdjustSimulationTargetSample( largest_sample_requested, sample_rate, mSimulationSampleRateHz );
+			U64 adjusted_largest_sample_requested = AnalyzerHelpers::AdjustSimulationTargetSample( largest_sample_requested, sample_rate, mSimulationSampleRateHz );
 
-	while( mSerialSimulationData.GetCurrentSampleNumber() < adjusted_largest_sample_requested )
-	{
-		CreateSerialByte();
-	}
-
-	*simulation_channel = &mSerialSimulationData;
-	return 1;
+    // looak at doc to add new generate data 
+		/*	while( mALESimulationData.GetCurrentSampleNumber() < adjusted_largest_sample_requested )
+			{
+				CreateALEByte();
+			}*/
+			*simulation_channel = onfiSimulationChannels.GetArray();
+			return onfiSimulationChannels.GetCount();
 }
 
-void ONFISimulationDataGenerator::CreateSerialByte()
+
+
+void ONFISimulationDataGenerator::CreateALEByte()
 {
 	U32 samples_per_bit = mSimulationSampleRateHz ;
 
-	U8 byte = mSerialText[ mStringIndex ];
+	U8 byte = mALEText[ mStringIndex ];
 	mStringIndex++;
-	if( mStringIndex == mSerialText.size() )
+	if( mStringIndex == mALEText.size() )
 		mStringIndex = 0;
 
 	//we're currenty high
 	//let's move forward a little
-	mSerialSimulationData.Advance( samples_per_bit * 10 );
+	mALESimulationData.Advance( samples_per_bit * 10 );
 
-	mSerialSimulationData.Transition();  //low-going edge for start bit
-	mSerialSimulationData.Advance( samples_per_bit );  //add start bit time
+	mALESimulationData.Transition();  //low-going edge for start bit
+	mALESimulationData.Advance( samples_per_bit );  //add start bit time
 
 	U8 mask = 0x1 << 7;
 	for( U32 i=0; i<8; i++ )
 	{
 		if( ( byte & mask ) != 0 )
-			mSerialSimulationData.TransitionIfNeeded( BIT_HIGH );
+			mALESimulationData.TransitionIfNeeded( BIT_HIGH );
 		else
-			mSerialSimulationData.TransitionIfNeeded( BIT_LOW );
+			mALESimulationData.TransitionIfNeeded( BIT_LOW );
 
-		mSerialSimulationData.Advance( samples_per_bit );
+		mALESimulationData.Advance( samples_per_bit );
 		mask = mask >> 1;
 	}
 
-	mSerialSimulationData.TransitionIfNeeded( BIT_HIGH ); //we need to end high
+	mALESimulationData.TransitionIfNeeded( BIT_HIGH ); //we need to end high
 
 	//lets pad the end a bit for the stop bit:
-	mSerialSimulationData.Advance( samples_per_bit );
+	mALESimulationData.Advance( samples_per_bit );
 }
