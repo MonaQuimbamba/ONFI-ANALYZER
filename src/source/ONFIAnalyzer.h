@@ -30,7 +30,10 @@ public:
 protected: //vars
 	std::auto_ptr< ONFIAnalyzerSettings > mSettings;
 	std::auto_ptr< ONFIAnalyzerResults > mResults;
+	ONFISimulationDataGenerator mSimulationDataGenerator;
+	bool mSimulationInitilized;
 
+	// raw pointer for each input 
 	AnalyzerChannelData* mALEChannel;
 	AnalyzerChannelData* mCEChannel;
 	AnalyzerChannelData* mCLEChannel;
@@ -41,8 +44,7 @@ protected: //vars
 	AnalyzerChannelData* mIOChannel;
 	AnalyzerChannelData* mRBChannel;
 
-	ONFISimulationDataGenerator mSimulationDataGenerator;
-	bool mSimulationInitilized;
+
 
 	//Serial analysis vars:
 	U32 mSampleRateHz;
