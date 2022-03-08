@@ -5,17 +5,30 @@
 #include <iostream>
 #include <fstream>
 
+/**
+* @brief Consctructor
+*  @details ...
+*
+***************************************/
 ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSettings* settings )
 :	AnalyzerResults(),
 	mSettings( settings ),
 	mAnalyzer( analyzer )
 {
 }
-
+/**
+* @brief Destructor
+*  @details ...
+*
+***************************************/
 ONFIAnalyzerResults::~ONFIAnalyzerResults()
 {
 }
 
+/**
+* @brief function GenerateBubbleText
+* @details 
+***************************/
 void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base )
 {
 	ClearResultStrings();
@@ -39,7 +52,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 	for( U32 i=0; i < num_frames; i++ )
 	{
 		Frame frame = GetFrame( i );
-		
+
 		char time_str[128];
 		AnalyzerHelpers::GetTimeString( frame.mStartingSampleInclusive, trigger_sample, sample_rate, time_str, 128 );
 

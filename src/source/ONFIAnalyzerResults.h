@@ -12,6 +12,7 @@
 class ONFIAnalyzer;
 class ONFIAnalyzerSettings;
 
+
 class ONFIAnalyzerResults : public AnalyzerResults
 {
 public:

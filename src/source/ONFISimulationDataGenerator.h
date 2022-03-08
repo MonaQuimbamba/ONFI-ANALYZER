@@ -6,14 +6,17 @@
 
 /**
  *  @file   ONFISimulationDataGenerator.h
- *  @brief  this class will generate simulated data that can be later to test the analyzer, or provide an example of what your analyzer expects
+ *  @brief  this class will generate simulated data that can be
+ *  later to test the analyzer, or provide an example of what your analyzer expects
  *
  *
  ***********************************************/
+
 class ONFIAnalyzerSettings;
 
 class ONFISimulationDataGenerator
 {
+
 public:
 	ONFISimulationDataGenerator();
 	~ONFISimulationDataGenerator();
@@ -26,11 +29,15 @@ protected:
 	U32 mSimulationSampleRateHz;
 
 protected:
-	void CreateSerialByte();
-	std::string mSerialText;
+	void CreateALEByte();
+	std::string mALEText;
 	U32 mStringIndex;
 
-	SimulationChannelDescriptor mSerialSimulationData;
+	/*
+	* for each channel
+	**/
+	SimulationChannelDescriptorGroup onfiSimulationChannels;
+	SimulationChannelDescriptor* mALESimulationData;
 
 };
 #endif //ONFI_SIMULATION_DATA_GENERATOR
