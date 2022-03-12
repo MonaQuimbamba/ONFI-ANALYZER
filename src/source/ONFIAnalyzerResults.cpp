@@ -27,7 +27,7 @@ ONFIAnalyzerResults::~ONFIAnalyzerResults()
 
 /**
 * @brief function GenerateBubbleText
-* @details 
+* @details
 ***************************/
 void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base )
 {

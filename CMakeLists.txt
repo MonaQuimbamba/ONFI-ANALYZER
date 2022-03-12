@@ -10,7 +10,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # custom CMake Modules are located in the cmake directory.
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+
+
 include(ExternalAnalyzerSDK)
+
+
 
 set(SOURCES
 src/source/ONFIAnalyzer.cpp

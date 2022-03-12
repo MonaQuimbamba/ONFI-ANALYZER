@@ -25,7 +25,7 @@ This signal indicates target array activity.
 
 
 ONFIAnalyzerSettings::ONFIAnalyzerSettings()
-:	 mALEChannel( UNDEFINED_CHANNEL ),
+:	mALEChannel( UNDEFINED_CHANNEL ),
 	mCEChannel( UNDEFINED_CHANNEL ),
 	mCLEChannel( UNDEFINED_CHANNEL ),
 	mLOCKChannel( UNDEFINED_CHANNEL ),
@@ -38,17 +38,17 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
     /// @details Setting up each AnalyzerSettingInterface object
 		// for the moment only AnalyzerSettingInterfaceChannel
 		mALEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mALEChannelInterface->SetTitleAndTooltip( "ALE", "INPUT , Address latch enable" );
+		mALEChannelInterface->SetTitleAndTooltip( "ALE", "Address latch enable" );
 		mALEChannelInterface->SetChannel( mALEChannel );
 		mALEChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mCEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mCEChannelInterface->SetTitleAndTooltip( "CE", "INPUT , Chip enable" );
+		mCEChannelInterface->SetTitleAndTooltip( "CE", "Chip enable" );
 		mCEChannelInterface->SetChannel( mCEChannel );
 		mCEChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mCLEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mCLEChannelInterface->SetTitleAndTooltip( "CLE", "INPUT, Command latch enable" );
+		mCLEChannelInterface->SetTitleAndTooltip( "CLE", "Command latch enable" );
 		mCLEChannelInterface->SetChannel( mCLEChannel );
 		mCLEChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -60,18 +60,18 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 
 
 		mREChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mREChannelInterface->SetTitleAndTooltip( "RE", "INPUT, READ enable" );
+		mREChannelInterface->SetTitleAndTooltip( "RE", "READ enable" );
 		mREChannelInterface->SetChannel( mREChannel );
 		mREChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mWEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mWEChannelInterface->SetTitleAndTooltip( "WE", "INPUT, Write enable " );
+		mWEChannelInterface->SetTitleAndTooltip( "WE", "Write enable " );
 		mWEChannelInterface->SetChannel( mWEChannel );
 		mWEChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 
 		mWPChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mWPChannelInterface->SetTitleAndTooltip( "WP", "INPUT, Write protect" );
+		mWPChannelInterface->SetTitleAndTooltip( "WP", "Write protect" );
 		mWPChannelInterface->SetChannel( mWPChannel );
 		mWPChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -81,7 +81,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mIOChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mRBChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mRBChannelInterface->SetTitleAndTooltip( "RB", "OUTPUT, Ready/busy" );
+		mRBChannelInterface->SetTitleAndTooltip( "RB", "Ready/busy" );
 		mRBChannelInterface->SetChannel( mRBChannel );
 		mRBChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -134,7 +134,7 @@ ONFIAnalyzerSettings::~ONFIAnalyzerSettings()
 }
 
 /**
-*  @brief this function will copy the values saved in our interface ojbects to
+*  @brief this function will copy the values saved in our interface objects to
 *  our settings variables
 **********************/
 /*
@@ -143,15 +143,47 @@ you would typically want to make
  sure that all the channels are different.
 You can use the AnalyzerHelpers::DoChannelsOverlap
 function to make that easier if you like
-
 à faire
 */
 bool ONFIAnalyzerSettings::SetSettingsFromInterfaces()
 {
 	mALEChannel = mALEChannelInterface->GetChannel();
-	//mBitRate = mBitRateInterface->GetInteger();
+	mCEChannel = mCEChannelInterface->GetChannel();
+
+	mCLEChannel = mCLEChannelInterface->GetChannel();
+	mLOCKChannel = mLOCKChannelInterface->GetChannel();
+
+	mREChannel = mREChannelInterface->GetChannel();
+	mWEChannel = mWEChannelInterface->GetChannel();
+
+	mWEChannel = mWPChannelInterface->GetChannel();
+	mWPChannel = mWPChannelInterface->GetChannel();
+	mIOChannel = mIOChannelInterface->GetChannel();
+	mRBChannel = mRBChannelInterface->GetChannel();
+
+	bool has_dq=false;
+  /**** ajouter la verification que chaque signal est
+			dans un channel different
+	***/
+
+
+
+
+
+	// mettre à jour les signal qu'ont été ajouté sur l'interface
 	ClearChannels();
-	AddChannel( mALEChannel, "Protocole-ONFI", true );
+	AddChannel( mALEChannel, "ALE", mALEChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mCEChannel, "CE", mCEChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mCLEChannel, "CLE", mCLEChannel!=UNDEFINED_CHANNEL );
+
+	AddChannel( mLOCKChannel, "LOCK", mLOCKChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mREChannel, "RE", mREChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mWEChannel, "WE", mWEChannel!=UNDEFINED_CHANNEL );
+
+	AddChannel( mWPChannel, "WP", mWPChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mIOChannel, "IO", mIOChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mRBChannel, "RB", mRBChannel!=UNDEFINED_CHANNEL );
+
 	return true;
 }
 
@@ -196,15 +228,15 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	text_archive >> mRBChannel;
 /// @brief  Since our channel values may have changed, we will also need to update the channels we’re reporting as using. We need to do this every times settings change.
 	ClearChannels();
-	AddChannel( mALEChannel, "Protocole-ONFI", mALEChannel != UNDEFINED_CHANNEL );
-	AddChannel( mCEChannel, "Protocole-ONFI", mCEChannel != UNDEFINED_CHANNEL );
-	AddChannel( mCLEChannel, "Protocole-ONFI", mCLEChannel != UNDEFINED_CHANNEL );
-	AddChannel( mLOCKChannel, "Protocole-ONFI", mLOCKChannel != UNDEFINED_CHANNEL );
-	AddChannel( mREChannel, "Protocole-ONFI", mREChannel != UNDEFINED_CHANNEL );
-	AddChannel( mWEChannel, "Protocole-ONFI", mWEChannel != UNDEFINED_CHANNEL );
-	AddChannel( mWPChannel, "Protocole-ONFI", mWPChannel != UNDEFINED_CHANNEL );
-	AddChannel( mIOChannel, "Protocole-ONFI", mIOChannel != UNDEFINED_CHANNEL );
-	AddChannel( mRBChannel, "Protocole-ONFI", mRBChannel != UNDEFINED_CHANNEL );
+	AddChannel( mALEChannel, "ALE", mALEChannel != UNDEFINED_CHANNEL );
+	AddChannel( mCEChannel, "CE", mCEChannel != UNDEFINED_CHANNEL );
+	AddChannel( mCLEChannel, "CLE", mCLEChannel != UNDEFINED_CHANNEL );
+	AddChannel( mLOCKChannel, "LOCK", mLOCKChannel != UNDEFINED_CHANNEL );
+	AddChannel( mREChannel, "RE", mREChannel != UNDEFINED_CHANNEL );
+	AddChannel( mWEChannel, "WE", mWEChannel != UNDEFINED_CHANNEL );
+	AddChannel( mWPChannel, "WP", mWPChannel != UNDEFINED_CHANNEL );
+	AddChannel( mIOChannel, "IO", mIOChannel != UNDEFINED_CHANNEL );
+	AddChannel( mRBChannel, "RB", mRBChannel != UNDEFINED_CHANNEL );
  /// @bried This will update all our interfaces to reflect the newly loaded values.
 	UpdateInterfacesFromSettings();
 }

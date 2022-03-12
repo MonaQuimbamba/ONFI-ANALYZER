@@ -5,6 +5,7 @@
 #include "ONFIAnalyzerResults.h"
 #include "ONFISimulationDataGenerator.h"
 
+
 /**
 * @file ONFIAnalyzer.h
 * @breif  The main thing you’ll do here
@@ -33,7 +34,8 @@ protected: //vars
 	ONFISimulationDataGenerator mSimulationDataGenerator;
 	bool mSimulationInitilized;
 
-	// raw pointer for each input 
+
+	// raw pointer for each input
 	AnalyzerChannelData* mALEChannel;
 	AnalyzerChannelData* mCEChannel;
 	AnalyzerChannelData* mCLEChannel;

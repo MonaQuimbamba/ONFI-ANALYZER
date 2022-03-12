@@ -46,7 +46,7 @@ void ONFIAnalyzer::SetupResults()
 *  @ details the heart of our Analyzer ...
 *******************/
 
-//AnalyzerChannelData give the data from a particular input 
+//AnalyzerChannelData give the data from a particular input
 void ONFIAnalyzer::WorkerThread()
 {
 				mSampleRateHz = GetSampleRate();
@@ -122,6 +122,7 @@ U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_s
 
 	return mSimulationDataGenerator.GenerateSimulationData( minimum_sample_index, device_sample_rate, simulation_channels );
 }
+
 
 /**
 *  @brief GetMinimumSampleRateHz

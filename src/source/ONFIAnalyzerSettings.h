@@ -45,7 +45,7 @@ public:
 
 protected:
 	/// @details the interface for the channel ALE
-	std::auto_ptr< AnalyzerSettingInterfaceChannel > mALEChannelInterface;
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mALEChannelInterface;
 	/// @details the interface for the channel CE
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mCEChannelInterface;
 	/// @details the interface for the channel CLE
