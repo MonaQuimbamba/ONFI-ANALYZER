@@ -43,6 +43,8 @@ public:
 		/// @details  the channel R/B
 	Channel mRBChannel;
 
+	Channel mDQSChannel;
+
 protected:
 	/// @details the interface for the channel ALE
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mALEChannelInterface;
@@ -62,6 +64,8 @@ std::auto_ptr< AnalyzerSettingInterfaceChannel > mWPChannelInterface;
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mIOChannelInterface;
 	/// @details the interface for the channel R/B
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mRBChannelInterface;
+
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQSChannelInterface;
 };
 
 #endif //ONFI_ANALYZER_SETTINGS

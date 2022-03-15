@@ -2,6 +2,10 @@
 #define ONFI_ANALYZER_RESULTS
 
 #include <AnalyzerResults.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 
 /**
 * @file ONFIAnalyzerResults.h
@@ -25,6 +29,7 @@ public:
 	virtual void GenerateFrameTabularText(U64 frame_index, DisplayBase display_base );
 	virtual void GeneratePacketTabularText( U64 packet_id, DisplayBase display_base );
 	virtual void GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base );
+	//std::string uint8_to_hex_string(const uint8_t *v, const size_t s);
 
 protected: //functions
 

@@ -33,7 +33,8 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 	mWEChannel( UNDEFINED_CHANNEL ),
 	mWPChannel( UNDEFINED_CHANNEL ),
 	mIOChannel( UNDEFINED_CHANNEL ),
-	mRBChannel( UNDEFINED_CHANNEL )
+	mRBChannel( UNDEFINED_CHANNEL ),
+	mDQSChannel(UNDEFINED_CHANNEL)
 {
     /// @details Setting up each AnalyzerSettingInterface object
 		// for the moment only AnalyzerSettingInterfaceChannel
@@ -85,6 +86,11 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mRBChannelInterface->SetChannel( mRBChannel );
 		mRBChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
+		mDQSChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
+		mDQSChannelInterface->SetTitleAndTooltip( "DQS", "DQS" );
+		mDQSChannelInterface->SetChannel( mDQSChannel );
+		mDQSChannelInterface->SetSelectionOfNoneIsAllowed( true );
+
 
 
 
@@ -97,7 +103,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		AddInterface( mWPChannelInterface.get() );
 		AddInterface( mIOChannelInterface.get() );
 		AddInterface( mRBChannelInterface.get() );
-
+		AddInterface( mDQSChannelInterface.get() );
 
 
 
@@ -122,6 +128,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 	AddChannel( mWPChannel, "WP", false );
 	AddChannel( mIOChannel, "I/O", false );
 	AddChannel( mRBChannel, "RB", false );
+	AddChannel( mDQSChannel, "DQS", false );
 
 }
 
@@ -161,6 +168,8 @@ bool ONFIAnalyzerSettings::SetSettingsFromInterfaces()
 	mIOChannel = mIOChannelInterface->GetChannel();
 	mRBChannel = mRBChannelInterface->GetChannel();
 
+	mDQSChannel = mDQSChannelInterface->GetChannel();
+
 	bool has_dq=false;
   /**** ajouter la verification que chaque signal est
 			dans un channel different
@@ -184,6 +193,8 @@ bool ONFIAnalyzerSettings::SetSettingsFromInterfaces()
 	AddChannel( mIOChannel, "IO", mIOChannel!=UNDEFINED_CHANNEL );
 	AddChannel( mRBChannel, "RB", mRBChannel!=UNDEFINED_CHANNEL );
 
+	AddChannel( mDQSChannel, "DQS", mDQSChannel!=UNDEFINED_CHANNEL );
+
 	return true;
 }
 
@@ -203,7 +214,7 @@ void ONFIAnalyzerSettings::UpdateInterfacesFromSettings()
 		mWPChannelInterface->SetChannel( mWPChannel );
 		mIOChannelInterface->SetChannel( mIOChannel );
 		mRBChannelInterface->SetChannel( mRBChannel );
-
+		mDQSChannelInterface->SetChannel( mDQSChannel );
 }
 
 /**
@@ -226,6 +237,7 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	text_archive >> mWPChannel;
 	text_archive >> mIOChannel;
 	text_archive >> mRBChannel;
+	text_archive >> mDQSChannel;
 /// @brief  Since our channel values may have changed, we will also need to update the channels we’re reporting as using. We need to do this every times settings change.
 	ClearChannels();
 	AddChannel( mALEChannel, "ALE", mALEChannel != UNDEFINED_CHANNEL );
@@ -237,6 +249,7 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	AddChannel( mWPChannel, "WP", mWPChannel != UNDEFINED_CHANNEL );
 	AddChannel( mIOChannel, "IO", mIOChannel != UNDEFINED_CHANNEL );
 	AddChannel( mRBChannel, "RB", mRBChannel != UNDEFINED_CHANNEL );
+	AddChannel( mDQSChannel, "DQS", mDQSChannel != UNDEFINED_CHANNEL );
  /// @bried This will update all our interfaces to reflect the newly loaded values.
 	UpdateInterfacesFromSettings();
 }
@@ -257,6 +270,7 @@ const char* ONFIAnalyzerSettings::SaveSettings()
 	text_archive << mWPChannel;
 	text_archive << mIOChannel;
 	text_archive << mRBChannel;
+	text_archive << mDQSChannel;
 
 	return SetReturnString( text_archive.GetString() );
 }

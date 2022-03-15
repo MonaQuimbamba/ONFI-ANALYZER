@@ -16,6 +16,15 @@ class ONFIAnalyzerSettings;
 class ANALYZER_EXPORT ONFIAnalyzer : public Analyzer2
 {
 public:
+	enum FrameType
+			{
+				kInvalid,
+				kEnvelope,
+				kCommand,
+				kAddress,
+				kData,
+			};
+
 	ONFIAnalyzer();
 	virtual ~ONFIAnalyzer();
 
@@ -27,6 +36,16 @@ public:
 
 	virtual const char* GetAnalyzerName() const;
 	virtual bool NeedsRerun();
+
+	U8 SyncAndReadDQ(U64 sample_number);
+	bool AddFrame(FrameType frame_type,
+										U64 start,
+										U64 end = 0,
+										U64 data1 = 0,
+										U64 data2 = 0,
+										U8 flags = 0
+									);
+
 
 protected: //vars
 	std::auto_ptr< ONFIAnalyzerSettings > mSettings;
@@ -45,6 +64,7 @@ protected: //vars
 	AnalyzerChannelData* mWPChannel;
 	AnalyzerChannelData* mIOChannel;
 	AnalyzerChannelData* mRBChannel;
+	AnalyzerChannelData* mDQSChannel;
 
 
 
