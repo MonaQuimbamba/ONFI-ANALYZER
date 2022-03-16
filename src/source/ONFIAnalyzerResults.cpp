@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iomanip>
 
+#include <cstdint>
 
 /**
 * @brief Consctructor
@@ -50,6 +51,10 @@ inline HexCharStruct hex(unsigned char _c)
   return HexCharStruct(_c);
 }
 
+/***************************************/
+
+/******************************************/
+
 void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 	Channel& channel, DisplayBase display_base )
 {
@@ -61,7 +66,7 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 	  const auto ft = (ONFIAnalyzer::FrameType)frame.mType;
 	  const auto data = (U8)frame.mData1;
 
-		std::string s;
+		std::string tmp;
 		std::stringstream ss;
 	  switch (ft)
 		{
@@ -70,26 +75,24 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 			    return;
 			  case ONFIAnalyzer::FrameType::kCommand:
 				    //text = 'c';//fmt::format("CMD:{:02x}", data);
-
 						ss << hex(data);
-						ss >> s;
-						text = "CMD: "+s;
+						ss >> tmp;
+
+						text = "CMD: "+tmp+"h";
 				    break;
 			  case ONFIAnalyzer::FrameType::kAddress:
 					    //text = 'a' ;//fmt::format("ADDR:{:02x}", data);
-							//std::string s;
-							//std::stringstream ss;
 							ss << hex(data);
-							ss >> s;
-							text = "ADDR: "+s;
+							ss >> tmp;
+
+							text = "ADDR: "+tmp;
 					    break;
 			  case ONFIAnalyzer::FrameType::kData:
 					    //text = 'd';//fmt::format("DATA:{:02x}", data);
-							//std::string s;
-							//std::stringstream ss;
 							ss << hex(data);
-							ss >> s;
-							text = "DATA: "+s;
+							ss >> tmp;
+
+							text = "DATA: "+tmp;
 					    break;
 	  }
 
@@ -146,6 +149,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 								 					std::stringstream ss;
 								 					ss << hex(addr);
 								 					ss >> s;
+												
 													line+= s;
 										 }
 				 			}

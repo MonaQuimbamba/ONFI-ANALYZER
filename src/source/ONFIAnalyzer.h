@@ -6,6 +6,7 @@
 #include "ONFISimulationDataGenerator.h"
 
 
+
 /**
 * @file ONFIAnalyzer.h
 * @breif  The main thing you’ll do here
@@ -58,13 +59,10 @@ protected: //vars
 	AnalyzerChannelData* mALEChannel;
 	AnalyzerChannelData* mCEChannel;
 	AnalyzerChannelData* mCLEChannel;
-	AnalyzerChannelData* mLOCKChannel;
 	AnalyzerChannelData* mREChannel;
 	AnalyzerChannelData* mWEChannel;
-	AnalyzerChannelData* mWPChannel;
-	AnalyzerChannelData* mIOChannel;
-	AnalyzerChannelData* mRBChannel;
 	AnalyzerChannelData* mDQSChannel;
+
 
 
 

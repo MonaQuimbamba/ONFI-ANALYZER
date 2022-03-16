@@ -36,8 +36,8 @@ void ONFIAnalyzer::SetupResults()
 {
 	mResults.reset( new ONFIAnalyzerResults( this, mSettings.get() ) );
 	SetAnalyzerResults( mResults.get() );
-	if( mSettings->mIOChannel != UNDEFINED_CHANNEL )
-		mResults->AddChannelBubblesWillAppearOn( mSettings->mIOChannel );
+	if( mSettings->mCEChannel != UNDEFINED_CHANNEL )
+		mResults->AddChannelBubblesWillAppearOn( mSettings->mCEChannel );
 
 }
 
@@ -45,78 +45,42 @@ U8 ONFIAnalyzer::SyncAndReadDQ(U64 sample_number)
 {
 						  U8 data = 0;
 
-							if(mALEChannel != NULL)
+						/*	if(mALEChannel != NULL)
 							{
 								mALEChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mALEChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
 								data |= b << 0;
 							}
-
 							if(mCEChannel != NULL)
 							{
 								mCEChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mCEChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
 								data |= b << 1;
 							}
-
 							if(mCLEChannel != NULL)
 							{
 								mCLEChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mCLEChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
 								data |= b << 2;
 							}
-
-							if(mLOCKChannel != NULL)
-							{
-								mLOCKChannel->AdvanceToAbsPosition(sample_number);
-								U8 b = (mLOCKChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
-								data |= b << 3;
-							}
-
 							if(mREChannel != NULL)
 							{
 								mREChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mREChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
 								data |= b << 4;
 							}
-
 							if(mWEChannel != NULL)
 							{
 								mWEChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mWEChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
 								data |= b << 5;
-							}
-
-							if(mWPChannel != NULL)
-							{
-								mWPChannel->AdvanceToAbsPosition(sample_number);
-								U8 b = (mWPChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
-								data |= b << 6;
-							}
-
-							if(mIOChannel != NULL)
-							{
-								mIOChannel->AdvanceToAbsPosition(sample_number);
-								U8 b = (mIOChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
-								data |= b << 7;
-							}
-
-							if(mRBChannel != NULL)
-							{
-								mRBChannel->AdvanceToAbsPosition(sample_number);
-								U8 b = (mRBChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
-								data |= b << 8;
-							}
-
-
-
-							if(mDQSChannel != NULL)
+							}*/
+							if(mDQSChannel!=NULL)
 							{
 								mDQSChannel->AdvanceToAbsPosition(sample_number);
 								U8 b = (mDQSChannel->GetBitState() == BIT_HIGH) ? 1 : 0;
-								data |= b << 8;
+								data |= b << 0;
 							}
-
 						  return data;
 }
 
@@ -133,26 +97,21 @@ void ONFIAnalyzer::WorkerThread()
 				mALEChannel = GetAnalyzerChannelData( mSettings->mALEChannel );
 				mCEChannel = GetAnalyzerChannelData( mSettings->mCEChannel );
 				mCLEChannel = GetAnalyzerChannelData( mSettings->mCLEChannel );
-				mLOCKChannel = GetAnalyzerChannelData( mSettings->mLOCKChannel );
 				mREChannel = GetAnalyzerChannelData( mSettings->mREChannel );
 				mWEChannel = GetAnalyzerChannelData( mSettings->mWEChannel );
-				mWPChannel = GetAnalyzerChannelData( mSettings->mWPChannel );
-				mIOChannel = GetAnalyzerChannelData( mSettings->mIOChannel );
-				mRBChannel = GetAnalyzerChannelData( mSettings->mRBChannel );
-				mDQSChannel= GetAnalyzerChannelData( mSettings->mDQSChannel );
+				mDQSChannel = GetAnalyzerChannelData( mSettings->mDQSChannel );
+
 
 				// a cycle begins with CE_n falling edge
 					// WE_n rising edge then clocks status of CLE and ALE
 					// DQ is clocked by DQS *centered* (for DDR)
 					auto& ce_n = mCEChannel;
-					auto& cle = mALEChannel;
-					auto& ale =mCLEChannel;
+					auto& cle = mCLEChannel;
+					auto& ale =  mALEChannel;
 					auto& we_n = mWEChannel;
 					auto& re = mREChannel;
-					auto& wp = mWPChannel;
-					auto& io = mIOChannel;
-					auto& rb = mRBChannel;
 					auto& dqs = mDQSChannel;
+
 				// the analyzant of data
 				while(true)
 				{
@@ -175,8 +134,7 @@ void ONFIAnalyzer::WorkerThread()
 															const auto we_n_next = we_n->GetSampleOfNextEdge();
 															const auto dqs_next = dqs->GetSampleOfNextEdge();
 
-															const auto first_edge =
-																has_cmd ? std::min(we_n_next, dqs_next) : we_n_next;
+															const auto first_edge = has_cmd ? std::min(we_n_next, dqs_next) : we_n_next;
 
 															if (first_edge >= ce_n_r)
 																			break;
@@ -184,12 +142,11 @@ void ONFIAnalyzer::WorkerThread()
 															// Be careful to give precedence to cmd/addr cycles
 															we_n->AdvanceToAbsPosition(first_edge);
 															dqs->AdvanceToAbsPosition(first_edge);
-															const bool data_cycle =
-															(first_edge != we_n_next) && (we_n->GetBitState() == BIT_HIGH);
+															const bool data_cycle = (first_edge != we_n_next) && (we_n->GetBitState() == BIT_HIGH);
 
 															if (data_cycle)
 															{
-																						// TODO in some cases, DQ should be centered, not edge
+																					/*	// TODO in some cases, DQ should be centered, not edge
 																						U8 data = SyncAndReadDQ(first_edge);
 
 																						// this is extremely fragile for some reason...Logic likes getting mad
@@ -202,15 +159,14 @@ void ONFIAnalyzer::WorkerThread()
 																						auto marker = (dqs->GetBitState() == BIT_HIGH)
 																															? AnalyzerResults::MarkerType::UpArrow
 																															: AnalyzerResults::MarkerType::DownArrow;
-																						mResults->AddMarker(first_edge, marker, mSettings->mDQSChannel);
+																						mResults->AddMarker(first_edge, marker, mSettings->mDQSChannel);*/
 																}
 
 															else if (we_n->GetBitState() == BIT_HIGH)
 															{
 																	// WE_n rising
 																	const auto we_n_r = we_n->GetSampleNumber();
-																	mResults->AddMarker(we_n_r, AnalyzerResults::MarkerType::UpArrow,
-																										 mSettings->mWEChannel);
+																	mResults->AddMarker(we_n_r, AnalyzerResults::MarkerType::UpArrow, mSettings->mWEChannel);
 
 																	cle->AdvanceToAbsPosition(we_n_r);
 																	ale->AdvanceToAbsPosition(we_n_r);
@@ -226,16 +182,15 @@ void ONFIAnalyzer::WorkerThread()
 
 																	else if (ale->GetBitState() == BIT_HIGH)
 																	{
-																			frame_type = kAddress;
+																			  frame_type = kAddress;
 																				end = std::min(we_n->GetSampleOfNextEdge(),
-																				ale->GetSampleOfNextEdge()) -
-																					1;
+																				ale->GetSampleOfNextEdge()) -	1;
 																	}
 																	else
 																	{
-																			mResults->AddMarker(first_edge, AnalyzerResults::MarkerType::ErrorDot,
-																							 mSettings->mCEChannel);
+																			mResults->AddMarker(first_edge, AnalyzerResults::MarkerType::ErrorDot,mSettings->mCEChannel);
 																	}
+
 																	if (frame_type != kInvalid)
 																	{
 																		U8 data = SyncAndReadDQ(we_n_r);
@@ -248,8 +203,7 @@ void ONFIAnalyzer::WorkerThread()
 										}
 
 										AddFrame(kEnvelope, ce_n_f, ce_n_r);
-										mResults->AddMarker(ce_n_r, AnalyzerResults::MarkerType::Stop,
-																		 mSettings->mCEChannel);
+										mResults->AddMarker(ce_n_r, AnalyzerResults::MarkerType::Stop, mSettings->mCEChannel);
 											// why doesn't this generate a packet :(
 										mResults->CommitPacketAndStartNewPacket();
 										mResults->CommitResults();
