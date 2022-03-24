@@ -210,20 +210,6 @@ void ONFIAnalyzer::WorkerThread()
 				}
 
 
-
-
-					//we have a byte to save.
-					/*
-					Frame frame;
-					frame.mData1 = data;
-					frame.mFlags = 0;
-					frame.mStartingSampleInclusive = starting_sample;
-					frame.mEndingSampleInclusive = mALEChannel->GetSampleNumber();
-
-					mResults->AddFrame( frame );
-					mResults->CommitResults();
-					ReportProgress( frame.mEndingSampleInclusive );*/
-
 }
 
 
