@@ -64,8 +64,6 @@ public:
 	AnalyzerChannelData* mDQSChannel;
 
 
-//Salut
-
 	//Serial analysis vars:
 	U32 mSampleRateHz;
 	U32 mStartOfStopBitOffset;
