@@ -30,20 +30,26 @@ public:
 	Channel mCEChannel;
 		/// @details  the channel CE
 	Channel mCLEChannel;
-		/// @details  the channel CLE
-	Channel mLOCKChannel;
 		/// @details  the channel LOCK
 	Channel mREChannel;
 		/// @details  the channel RE
 	Channel mWEChannel;
-		/// @details  the channel WP
-	Channel mWPChannel;
-		/// @details  the channel I/O
-	Channel mIOChannel;
+
 		/// @details  the channel R/B
 	Channel mRBChannel;
 
 	Channel mDQSChannel;
+	/// @details  the channel I/O
+	Channel mDQChannel;
+
+	Channel mDQ_1Channel;
+	Channel mDQ_2Channel;
+	Channel mDQ_3Channel;
+	Channel mDQ_4Channel;
+	Channel mDQ_5Channel;
+	Channel mDQ_6Channel;
+	Channel mDQ_7Channel;
+
 
 protected:
 	/// @details the interface for the channel ALE
@@ -52,20 +58,36 @@ std::auto_ptr< AnalyzerSettingInterfaceChannel > mALEChannelInterface;
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mCEChannelInterface;
 	/// @details the interface for the channel CLE
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mCLEChannelInterface;
-	/// @details the interface for the channel LOCK
-std::auto_ptr< AnalyzerSettingInterfaceChannel > mLOCKChannelInterface;
+
 	/// @details the interface for the channel RE
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mREChannelInterface;
 	/// @details the interface for the channel WE
 std::auto_ptr< AnalyzerSettingInterfaceChannel >  mWEChannelInterface;
-	/// @details the interface for the channel WP
-std::auto_ptr< AnalyzerSettingInterfaceChannel > mWPChannelInterface;
+
 	/// @details the interface for the channel I/O
-std::auto_ptr< AnalyzerSettingInterfaceChannel > mIOChannelInterface;
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQChannelInterface;
 	/// @details the interface for the channel R/B
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mRBChannelInterface;
 
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQSChannelInterface;
+
+
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_1ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_2ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_3ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_4ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_5ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_6ChannelInterface;
+/// @details the interface for the channel WP
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_7ChannelInterface;
+
+
+
 };
 
 #endif //ONFI_ANALYZER_SETTINGS

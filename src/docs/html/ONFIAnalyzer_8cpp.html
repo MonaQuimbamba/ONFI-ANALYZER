@@ -72,12 +72,16 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="ONFIAnalyzer_8h_source.html">ONFIAnalyzer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ONFIAnalyzerSettings_8h_source.html">ONFIAnalyzerSettings.h</a>&quot;</code><br />
-<code>#include &quot;../AnalyzerSDK/include/AnalyzerChannelData.h&quot;</code><br />
+<code>#include &lt;AnalyzerChannelData.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ONFIAnalyzer.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="ONFIAnalyzer_8cpp__incl.png" border="0" usemap="#source_2ONFIAnalyzer_8cpp" alt=""/></div>
 <map name="source_2ONFIAnalyzer_8cpp" id="source_2ONFIAnalyzer_8cpp">
+<area shape="rect" id="node2" href="ONFIAnalyzer_8h.html" title="ONFIAnalyzer.h" alt="" coords="439,80,555,107"/>
+<area shape="rect" id="node13" href="ONFIAnalyzerSettings_8h.html" title="this fucntion will define the settings our analyzer needs, and create interfaces that’ll allow the L..." alt="" coords="725,80,889,107"/>
+<area shape="rect" id="node4" href="ONFIAnalyzerResults_8h.html" title="This class translates saved results into text for a variety of uses. Here we&#39;ll start thinking about ..." alt="" coords="300,155,461,181"/>
+<area shape="rect" id="node10" href="ONFISimulationDataGenerator_8h.html" title="this class will generate simulated data that can be later to test the analyzer, or provide an example..." alt="" coords="506,155,717,181"/>
 </map>
 </div>
 </div>
@@ -86,10 +90,13 @@ Include dependency graph for ONFIAnalyzer.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac230bae1276b5bb479328633ebfb1906"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ONFIAnalyzer_8cpp.html#ac230bae1276b5bb479328633ebfb1906">GetAnalyzerName</a> ()</td></tr>
+<tr class="memdesc:ac230bae1276b5bb479328633ebfb1906"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetAnalyzerName.  <a href="#ac230bae1276b5bb479328633ebfb1906">More...</a><br /></td></tr>
 <tr class="separator:ac230bae1276b5bb479328633ebfb1906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4608a9372194d846566ab8c094e75dfb"><td class="memItemLeft" align="right" valign="top">Analyzer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ONFIAnalyzer_8cpp.html#a4608a9372194d846566ab8c094e75dfb">CreateAnalyzer</a> ()</td></tr>
+<tr class="memdesc:a4608a9372194d846566ab8c094e75dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">CreateAnalyzer.  <a href="#a4608a9372194d846566ab8c094e75dfb">More...</a><br /></td></tr>
 <tr class="separator:a4608a9372194d846566ab8c094e75dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73444b14b60f2c1dfbb0a2aba2fc1a01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ONFIAnalyzer_8cpp.html#a73444b14b60f2c1dfbb0a2aba2fc1a01">DestroyAnalyzer</a> (Analyzer *analyzer)</td></tr>
+<tr class="memdesc:a73444b14b60f2c1dfbb0a2aba2fc1a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">DestroyAnalyzer.  <a href="#a73444b14b60f2c1dfbb0a2aba2fc1a01">More...</a><br /></td></tr>
 <tr class="separator:a73444b14b60f2c1dfbb0a2aba2fc1a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -108,8 +115,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00106">106</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classONFIAnalyzer.html">ONFIAnalyzer</a>();</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div><div class="ttc" id="classONFIAnalyzer_html"><div class="ttname"><a href="classONFIAnalyzer.html">ONFIAnalyzer</a></div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzer_8h_source.html#l00014">ONFIAnalyzer.h:14</a></div></div>
+<p>CreateAnalyzer. </p>
+
+<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00352">352</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;{</div><div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classONFIAnalyzer.html">ONFIAnalyzer</a>();</div><div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;}</div><div class="ttc" id="classONFIAnalyzer_html"><div class="ttname"><a href="classONFIAnalyzer.html">ONFIAnalyzer</a></div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzer_8h_source.html#l00016">ONFIAnalyzer.h:16</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -129,8 +138,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00111">111</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">delete</span> analyzer;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div></div><!-- fragment -->
+<p>DestroyAnalyzer. </p>
+<p>this function Simply call delete on the provided pointer. </p>
+
+<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00362">362</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;{</div><div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keyword">delete</span> analyzer;</div><div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 <a id="ac230bae1276b5bb479328633ebfb1906"></a>
@@ -148,8 +160,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00101">101</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;Protocole-ONFI&quot;</span>;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div></div><!-- fragment -->
+<p>GetAnalyzerName. </p>
+<p>return the Analyzer' name </p>
+
+<p class="definition">Definition at line <a class="el" href="ONFIAnalyzer_8cpp_source.html#l00343">343</a> of file <a class="el" href="ONFIAnalyzer_8cpp_source.html">ONFIAnalyzer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;{</div><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;ONFI Protocol&quot;</span>;</div><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
