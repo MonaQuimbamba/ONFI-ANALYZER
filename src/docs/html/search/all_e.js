@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workerthread',['WorkerThread',['../classONFIAnalyzer.html#addc570440eb966edc508b34379af2aa4',1,'ONFIAnalyzer']]]
+  ['updateinterfacesfromsettings',['UpdateInterfacesFromSettings',['../classONFIAnalyzerSettings.html#ad99c9ece3bc9c5f97a7abdaaecd99aa5',1,'ONFIAnalyzerSettings']]]
 ];

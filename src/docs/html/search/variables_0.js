@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['c',['c',['../structHexCharStruct.html#a6257e9b23c245ecdbfd9d3d20709009d',1,'HexCharStruct']]]
+  ['alechannel',['aleChannel',['../classONFIAnalyzer.html#a0d52d3c350e2313d9ac48a83ab7ae360',1,'ONFIAnalyzer']]]
 ];
