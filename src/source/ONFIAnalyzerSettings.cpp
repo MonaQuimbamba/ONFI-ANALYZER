@@ -70,7 +70,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 
 
 		mDQChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mDQChannelInterface->SetTitleAndTooltip( "IO", "I/O, Data inputs/outputs" );
+		mDQChannelInterface->SetTitleAndTooltip( "Data", "data" );
 		mDQChannelInterface->SetChannel( mDQChannel );
 		mDQChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -80,7 +80,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mRBChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mDQSChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mDQSChannelInterface->SetTitleAndTooltip( "DQS", "DQS" );
+		mDQSChannelInterface->SetTitleAndTooltip(  "strobe data ", "Data" );
 		mDQSChannelInterface->SetChannel( mDQSChannel );
 		mDQSChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -161,7 +161,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 	AddChannel( mCLEChannel, "CLE", false );
 	AddChannel( mREChannel, "RE", false );
 	AddChannel( mWEChannel, "WE", false );
-	AddChannel( mDQChannel, "I/O", false );
+	AddChannel( mDQChannel, "DQ", false );
 	AddChannel( mRBChannel, "RB", false );
 	AddChannel( mDQSChannel, "DQS", false );
 
@@ -219,18 +219,18 @@ bool ONFIAnalyzerSettings::SetSettingsFromInterfaces()
 	AddChannel( mCLEChannel, "CLE", mCLEChannel!=UNDEFINED_CHANNEL );
 	AddChannel( mREChannel, "RE", mREChannel!=UNDEFINED_CHANNEL );
 	AddChannel( mWEChannel, "WE", mWEChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQChannel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQChannel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
 	AddChannel( mRBChannel, "RB", mRBChannel!=UNDEFINED_CHANNEL );
 	AddChannel( mDQSChannel, "DQS", mDQSChannel!=UNDEFINED_CHANNEL );
 
 
-	AddChannel( mDQ_1Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_2Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_3Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_4Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_5Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_6Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
-	AddChannel( mDQ_7Channel, "IO", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_1Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_2Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_3Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_4Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_5Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_6Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
+	AddChannel( mDQ_7Channel, "DQ", mDQChannel!=UNDEFINED_CHANNEL );
 
 	return true;
 }
@@ -297,18 +297,18 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	AddChannel( mCLEChannel, "CLE", mCLEChannel != UNDEFINED_CHANNEL );
 	AddChannel( mREChannel, "RE", mREChannel != UNDEFINED_CHANNEL );
 	AddChannel( mWEChannel, "WE", mWEChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQChannel, "IO", mDQChannel != UNDEFINED_CHANNEL );
+	AddChannel( mDQChannel, "DQ", mDQChannel != UNDEFINED_CHANNEL );
 	AddChannel( mRBChannel, "RB", mRBChannel != UNDEFINED_CHANNEL );
 	AddChannel( mDQSChannel, "DQS", mDQSChannel != UNDEFINED_CHANNEL );
 
 
-	AddChannel( mDQ_1Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_2Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_3Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_4Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_5Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_6Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
-	AddChannel( mDQ_7Channel, "Protocole-ONFI", mDQChannel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_1Channel, "DQ", mDQ_1Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_2Channel, "DQ", mDQ_2Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_3Channel, "DQ", mDQ_3Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_4Channel, "DQ", mDQ_4Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_5Channel, "DQ", mDQ_5Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_6Channel, "DQ", mDQ_6Channel != UNDEFINED_CHANNEL );
+	AddChannel( mDQ_7Channel, "DQ", mDQ_7Channel != UNDEFINED_CHANNEL );
 
  /// @bried This will update all our interfaces to reflect the newly loaded values.
 	UpdateInterfacesFromSettings();

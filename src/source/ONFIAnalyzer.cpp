@@ -52,7 +52,7 @@ void ONFIAnalyzer::analyzerNVDDRxx()
 				reChannel = GetAnalyzerChannelData( mSettings->mREChannel);
 				rbChannel= GetAnalyzerChannelData( mSettings->mRBChannel);
 				dqsChannel= GetAnalyzerChannelData( mSettings->mDQSChannel);
-				// list de channels datas
+				// list of all  channels datas to do 
 				dqChannel = GetAnalyzerChannelData( mSettings->mDQChannel);
 
 				auto& ce_n = ceChannel;
