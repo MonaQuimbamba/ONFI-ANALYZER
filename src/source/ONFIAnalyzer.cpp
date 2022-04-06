@@ -52,7 +52,153 @@ void ONFIAnalyzer::analyzerNVDDRxx()
 				reChannel = GetAnalyzerChannelData( mSettings->mREChannel);
 				rbChannel= GetAnalyzerChannelData( mSettings->mRBChannel);
 				dqsChannel= GetAnalyzerChannelData( mSettings->mDQSChannel);
-				// list of all  channels datas to do 
+				// list of all  channels datas to do
+				dqChannel = GetAnalyzerChannelData( mSettings->mDQChannel);
+
+				auto& ce_n = ceChannel;
+				auto& ale =  aleChannel;
+				auto& cle = cleChannel;
+				auto& we_n = weChannel;
+				auto& re = reChannel;
+				auto& rb = rbChannel;
+				auto& dqs = dqsChannel;
+				auto& dq = dqChannel;
+
+
+				while(true)
+				{
+							ReportProgress(ce_n->GetSampleNumber());
+							if (ce_n->GetBitState() == BIT_HIGH)
+										ce_n->AdvanceToNextEdge();
+
+															const auto ce_n_f = ce_n->GetSampleNumber();
+															re->AdvanceToAbsPosition(ce_n_f);
+															ce_n->AdvanceToNextEdge();
+															const auto ce_n_r = ce_n->GetSampleNumber();
+
+							               if(re->GetBitState()==BIT_HIGH)
+														 {
+
+																					 cle->AdvanceToAbsPosition(re->GetSampleNumber());
+																					 ale->AdvanceToAbsPosition(re->GetSampleNumber());
+																					 we_n->AdvanceToAbsPosition(re->GetSampleNumber());
+
+																					 const auto we_n_r = we_n->GetSampleNumber();
+																					 mResults->AddMarker(we_n_r, AnalyzerResults::MarkerType::UpArrow,mSettings->mWEChannel);
+
+																					 FrameType frame_type = kInvalid;
+																					 U64 end{};
+																					 if (cle->GetBitState() == BIT_HIGH)
+																					 {
+
+																						 frame_type = kCommand;
+																						 end = cle->GetSampleOfNextEdge() - 1;
+																					 }
+
+																					 else if (ale->GetBitState() == BIT_HIGH)
+																					 {
+																							   frame_type = kAddress;
+																								 end = ale->GetSampleOfNextEdge() - 1;
+																								 //end = std::min(we_n->GetSampleOfNextEdge(),ale->GetSampleOfNextEdge()) -1;
+																					 }
+																					 else if(we_n->GetBitState()==BIT_HIGH && cle->GetBitState()==BIT_LOW && ale->GetBitState()==BIT_LOW)
+																					 {
+																							 //mResults->AddMarker(first_edge, AnalyzerResults::MarkerType::ErrorDot,mSettings->mCEChannel);
+																					 }
+																					 if (frame_type != kInvalid)
+																					 {
+																							 U8 data = SyncAndReadDQ(we_n_r);
+																							 AddFrame(frame_type, we_n_r, end, data);
+																					 }
+														 }
+														 else
+														 {
+																	const auto ce_n_f = ce_n->GetSampleNumber();
+		 															re->AdvanceToAbsPosition(ce_n_f);
+		 															ce_n->AdvanceToNextEdge();
+		 															const auto ce_n_r = ce_n->GetSampleNumber();
+																	const auto we_n_r = we_n->GetSampleNumber();
+
+																	cle->AdvanceToAbsPosition(re->GetSampleNumber());
+																	ale->AdvanceToAbsPosition(re->GetSampleNumber());
+																	we_n->AdvanceToAbsPosition(re->GetSampleNumber());
+
+															 		if(we_n->GetBitState()==BIT_HIGH && cle->GetBitState()==BIT_LOW && ale->GetBitState()==BIT_LOW)
+																	{
+
+																	}
+														 }
+
+
+						 // send data to resultats to show up on saleae software
+							AddFrame(kEnvelope, ce_n_f, ce_n_r);
+							mResults->AddMarker(ce_n_r, AnalyzerResults::MarkerType::Stop, mSettings->mCEChannel);
+							mResults->CommitPacketAndStartNewPacket();
+							mResults->CommitResults();
+
+				}
+
+
+
+
+}
+
+bool ONFIAnalyzer::AddFrame(FrameType frame_type,
+                            U64 start,
+                            U64 end,
+                            U64 data1,
+                            U64 data2,
+                            U8 flags)
+{
+			  // NOTE: end - start must be > 0 or Logic crashes when trying to zoom to the
+			  // frame
+			  if (start >= end) {
+			    return false;
+			  }
+			  Frame frame{};
+			  frame.mStartingSampleInclusive = start;
+			  frame.mEndingSampleInclusive = end;
+			  frame.mType = frame_type;
+			  frame.mData1 = data1;
+			  frame.mData2 = data2;
+			  frame.mFlags = flags;
+			  mResults->AddFrame(frame);
+			  ReportProgress(frame.mEndingSampleInclusive);
+			  return true;
+}
+
+bool ONFIAnalyzer::NeedsRerun()
+{	return false;}
+
+U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor** simulation_channels )
+{	return 0;}
+
+U32 ONFIAnalyzer::GetMinimumSampleRateHz()
+{	return 0;}
+
+const char* ONFIAnalyzer::GetAnalyzerName() const
+{	return "ONFI Protocol";}
+
+const char* GetAnalyzerName()
+{	return "ONFI Protocol";}
+
+Analyzer* CreateAnalyzer()
+{	return new ONFIAnalyzer();}
+
+void DestroyAnalyzer( Analyzer* analyzer )
+{	delete analyzer;}
+
+
+/*
+// get all data from channel
+				ceChannel = GetAnalyzerChannelData( mSettings->mCEChannel);
+				aleChannel = GetAnalyzerChannelData( mSettings->mALEChannel);
+				cleChannel = GetAnalyzerChannelData( mSettings->mCLEChannel);
+				weChannel = GetAnalyzerChannelData( mSettings->mWEChannel);
+				reChannel = GetAnalyzerChannelData( mSettings->mREChannel);
+				rbChannel= GetAnalyzerChannelData( mSettings->mRBChannel);
+				dqsChannel= GetAnalyzerChannelData( mSettings->mDQSChannel);
+				// list of all  channels datas to do
 				dqChannel = GetAnalyzerChannelData( mSettings->mDQChannel);
 
 				auto& ce_n = ceChannel;
@@ -158,50 +304,4 @@ void ONFIAnalyzer::analyzerNVDDRxx()
 								mResults->CommitPacketAndStartNewPacket();
 								mResults->CommitResults();
 					}
-}
-
-bool ONFIAnalyzer::AddFrame(FrameType frame_type,
-                            U64 start,
-                            U64 end,
-                            U64 data1,
-                            U64 data2,
-                            U8 flags)
-{
-			  // NOTE: end - start must be > 0 or Logic crashes when trying to zoom to the
-			  // frame
-			  if (start >= end) {
-			    return false;
-			  }
-			  Frame frame{};
-			  frame.mStartingSampleInclusive = start;
-			  frame.mEndingSampleInclusive = end;
-			  frame.mType = frame_type;
-			  frame.mData1 = data1;
-			  frame.mData2 = data2;
-			  frame.mFlags = flags;
-			  mResults->AddFrame(frame);
-			  ReportProgress(frame.mEndingSampleInclusive);
-			  return true;
-}
-
-bool ONFIAnalyzer::NeedsRerun()
-{	return false;}
-
-
-U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor** simulation_channels )
-{	return 0;}
-
-U32 ONFIAnalyzer::GetMinimumSampleRateHz()
-{	return 0;}
-
-const char* ONFIAnalyzer::GetAnalyzerName() const
-{	return "ONFI Protocol";}
-
-const char* GetAnalyzerName()
-{	return "ONFI Protocol";}
-
-Analyzer* CreateAnalyzer()
-{	return new ONFIAnalyzer();}
-
-void DestroyAnalyzer( Analyzer* analyzer )
-{	delete analyzer;}
+*/

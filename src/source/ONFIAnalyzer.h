@@ -89,11 +89,11 @@ public:
 										@details	pseudocode of our analyze of onfi protocol :
 										@code
 									  while True:
-									    get the bit of CE's signal
+									    get the bit of CE signal
 											if the current bit od CE is equal to 1 then :
 											 				we move on to the next bit
 											else then:
-													get the bit of R/E's signal hand move it where CE signal is 0
+													get the bit of R/E signal and move it where CE signal is 0
 													if the bit of R/E is equal to 1 the :
 													      get the signals of ALE ,CLE and WE and mowe all where R/E is equal to 1
 																if ALE signal is equal to 1 then :

@@ -70,7 +70,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 
 
 		mDQChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mDQChannelInterface->SetTitleAndTooltip( "Data", "data" );
+		mDQChannelInterface->SetTitleAndTooltip( "DQ0", "data" );
 		mDQChannelInterface->SetChannel( mDQChannel );
 		mDQChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -80,7 +80,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mRBChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 		mDQSChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-		mDQSChannelInterface->SetTitleAndTooltip(  "strobe data ", "Data" );
+		mDQSChannelInterface->SetTitleAndTooltip(  "DQS ", "Data" );
 		mDQSChannelInterface->SetChannel( mDQSChannel );
 		mDQSChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
@@ -88,37 +88,37 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		//******************************//
 
 				mDQ_1ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_1ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_1ChannelInterface->SetTitleAndTooltip( "DQ1", "data" );
 				mDQ_1ChannelInterface->SetChannel( mDQ_1Channel );
 				mDQ_1ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_2ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_2ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_2ChannelInterface->SetTitleAndTooltip( "DQ2", "data" );
 				mDQ_2ChannelInterface->SetChannel( mDQ_2Channel );
 				mDQ_2ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_3ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_3ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_3ChannelInterface->SetTitleAndTooltip( "DQ3", "data" );
 				mDQ_3ChannelInterface->SetChannel( mDQ_3Channel );
 				mDQ_3ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_4ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_4ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_4ChannelInterface->SetTitleAndTooltip( "DQ4", "data" );
 				mDQ_4ChannelInterface->SetChannel( mDQ_4Channel );
 				mDQ_4ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_5ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_5ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_5ChannelInterface->SetTitleAndTooltip( "DQ5", "data" );
 				mDQ_5ChannelInterface->SetChannel( mDQ_5Channel );
 				mDQ_5ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_6ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_6ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_6ChannelInterface->SetTitleAndTooltip( "DQ6", "data" );
 				mDQ_6ChannelInterface->SetChannel( mDQ_6Channel );
 				mDQ_6ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
 				mDQ_7ChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
-				mDQ_7ChannelInterface->SetTitleAndTooltip( "Data", "data" );
+				mDQ_7ChannelInterface->SetTitleAndTooltip( "DQ7", "data" );
 				mDQ_7ChannelInterface->SetChannel( mDQ_7Channel );
 				mDQ_7ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
