@@ -64,14 +64,15 @@ std::auto_ptr< AnalyzerSettingInterfaceChannel > mREChannelInterface;
 	/// @details the interface for the channel WE
 std::auto_ptr< AnalyzerSettingInterfaceChannel >  mWEChannelInterface;
 
-	/// @details the interface for the channel I/O
-std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQChannelInterface;
+
 	/// @details the interface for the channel R/B
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mRBChannelInterface;
 
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQSChannelInterface;
 
 
+/// @details the interface for the channel I/O
+std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQChannelInterface;
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_1ChannelInterface;
 /// @details the interface for the channel WP
 std::auto_ptr< AnalyzerSettingInterfaceChannel > mDQ_2ChannelInterface;

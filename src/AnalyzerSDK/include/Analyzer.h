@@ -21,7 +21,7 @@ public:
 	Analyzer();
 	virtual ~Analyzer() = 0;
 	virtual void WorkerThread() = 0;
-	
+
 	//sample_rate: if there are multiple devices attached, and one is faster than the other,
 	//we can sample at the speed of the faster one; and pretend the slower one is the same speed.
 	virtual U32 GenerateSimulationData( U64 newest_sample_requested, U32 sample_rate, SimulationChannelDescriptor** simulation_channels ) = 0;
@@ -59,7 +59,7 @@ public:
 	void StartProcessing( U64 starting_sample );
 
 
-protected: 
+protected:
 	struct AnalyzerData* mData;
 };
 

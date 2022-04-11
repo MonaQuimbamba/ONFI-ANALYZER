@@ -129,7 +129,7 @@ protected: //vars
 		/// @details  the read/busy signal
 		AnalyzerChannelData* rbChannel;
 		/// @details  the Data Bus Inversion signal
-		AnalyzerChannelData* dqChannel;
+		std::array<AnalyzerChannelData*,8> dqChannel={};
 
 };
 
