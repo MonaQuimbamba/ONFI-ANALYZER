@@ -84,7 +84,7 @@ Include dependency graph for ONFIAnalyzerResults.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="ONFIAnalyzerResults_8cpp__incl.png" border="0" usemap="#source_2ONFIAnalyzerResults_8cpp" alt=""/></div>
 <map name="source_2ONFIAnalyzerResults_8cpp" id="source_2ONFIAnalyzerResults_8cpp">
-<area shape="rect" id="node2" href="ONFIAnalyzerResults_8h.html" title="This class translates saved results into text for a variety of uses. Here we&#39;ll start thinking about ..." alt="" coords="223,155,385,181"/>
+<area shape="rect" id="node2" href="ONFIAnalyzerResults_8h.html" title="This class translates saved results into hex string value for a variety of uses. Here we&#39;ll start thi..." alt="" coords="223,155,385,181"/>
 <area shape="rect" id="node9" href="ONFIAnalyzer_8h.html" title="ONFIAnalyzer.h" alt="" coords="461,80,577,107"/>
 <area shape="rect" id="node14" href="ONFIAnalyzerSettings_8h.html" title="this fucntion will define the settings our analyzer needs, and create interfaces that’ll allow the L..." alt="" coords="782,80,946,107"/>
 <area shape="rect" id="node11" href="ONFISimulationDataGenerator_8h.html" title="this class will generate simulated data that can be later to test the analyzer, or provide an example..." alt="" coords="460,155,671,181"/>
@@ -96,7 +96,6 @@ Include dependency graph for ONFIAnalyzerResults.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHexCharStruct.html">HexCharStruct</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">function GenerateBubbleText  <a href="structHexCharStruct.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -131,8 +130,8 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ONFIAnalyzerResults_8cpp_source.html#l00048">48</a> of file <a class="el" href="ONFIAnalyzerResults_8cpp_source.html">ONFIAnalyzerResults.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structHexCharStruct.html">HexCharStruct</a>(_c);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div><div class="ttc" id="structHexCharStruct_html"><div class="ttname"><a href="structHexCharStruct.html">HexCharStruct</a></div><div class="ttdoc">function GenerateBubbleText </div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00037">ONFIAnalyzerResults.cpp:37</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ONFIAnalyzerResults_8cpp_source.html#l00035">35</a> of file <a class="el" href="ONFIAnalyzerResults_8cpp_source.html">ONFIAnalyzerResults.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structHexCharStruct.html">HexCharStruct</a>(_c);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div><div class="ttc" id="structHexCharStruct_html"><div class="ttname"><a href="structHexCharStruct.html">HexCharStruct</a></div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00024">ONFIAnalyzerResults.cpp:24</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -170,9 +169,9 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ONFIAnalyzerResults_8cpp_source.html#l00043">43</a> of file <a class="el" href="ONFIAnalyzerResults_8cpp_source.html">ONFIAnalyzerResults.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordflow">return</span> (o &lt;&lt; <a class="code" href="ONFIAnalyzerResults_8cpp.html#a8c397caca29f6f6261bc32ab57974cf4">std::hex</a> &lt;&lt; (<span class="keywordtype">int</span>)hs.<a class="code" href="structHexCharStruct.html#a6257e9b23c245ecdbfd9d3d20709009d">c</a>);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div><div class="ttc" id="ONFIAnalyzerResults_8cpp_html_a8c397caca29f6f6261bc32ab57974cf4"><div class="ttname"><a href="ONFIAnalyzerResults_8cpp.html#a8c397caca29f6f6261bc32ab57974cf4">hex</a></div><div class="ttdeci">HexCharStruct hex(unsigned char _c)</div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00048">ONFIAnalyzerResults.cpp:48</a></div></div>
-<div class="ttc" id="structHexCharStruct_html_a6257e9b23c245ecdbfd9d3d20709009d"><div class="ttname"><a href="structHexCharStruct.html#a6257e9b23c245ecdbfd9d3d20709009d">HexCharStruct::c</a></div><div class="ttdeci">unsigned char c</div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00039">ONFIAnalyzerResults.cpp:39</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ONFIAnalyzerResults_8cpp_source.html#l00030">30</a> of file <a class="el" href="ONFIAnalyzerResults_8cpp_source.html">ONFIAnalyzerResults.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">return</span> (o &lt;&lt; <a class="code" href="ONFIAnalyzerResults_8cpp.html#a8c397caca29f6f6261bc32ab57974cf4">std::hex</a> &lt;&lt; (<span class="keywordtype">int</span>)hs.<a class="code" href="structHexCharStruct.html#a6257e9b23c245ecdbfd9d3d20709009d">c</a>);</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div><div class="ttc" id="ONFIAnalyzerResults_8cpp_html_a8c397caca29f6f6261bc32ab57974cf4"><div class="ttname"><a href="ONFIAnalyzerResults_8cpp.html#a8c397caca29f6f6261bc32ab57974cf4">hex</a></div><div class="ttdeci">HexCharStruct hex(unsigned char _c)</div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00035">ONFIAnalyzerResults.cpp:35</a></div></div>
+<div class="ttc" id="structHexCharStruct_html_a6257e9b23c245ecdbfd9d3d20709009d"><div class="ttname"><a href="structHexCharStruct.html#a6257e9b23c245ecdbfd9d3d20709009d">HexCharStruct::c</a></div><div class="ttdeci">unsigned char c</div><div class="ttdef"><b>Definition:</b> <a href="ONFIAnalyzerResults_8cpp_source.html#l00026">ONFIAnalyzerResults.cpp:26</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

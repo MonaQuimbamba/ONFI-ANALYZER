@@ -7,7 +7,7 @@
 
 /**
 * @file ONFIAnalyzer.h
-* @breif  TClass analyzer this in this class we going to analyze
+* @breif  Class analyzer this in this class we going to analyze
 *  each signal of data dump according to ONFI protocol
 ***/
 class ONFIAnalyzerSettings;
@@ -15,8 +15,8 @@ class ANALYZER_EXPORT ONFIAnalyzer : public Analyzer2
 {
 public:
 	/**
-	* @details we use this enum type to store data
-	* from signal according to their naturel ,
+	* @details We use this enum type to store data
+	* from signal according to their naturel,
 	* for example if it's a cmd data the enum will have the value kcommand
 	*****/
 	enum FrameType
@@ -34,25 +34,25 @@ public:
 			};
 	/**
 	*  @brief Constructor
-	*  @details
+	*  @details Constructor of the class ONFIAnalyzer
 	*
 	*********************************/
 	ONFIAnalyzer();
 	/**
 	*  @brief Destructor
-	*  @details
+	*  @details Destructor of the class ONFIAnalyzer
 	*
 	*********************************/
 	virtual ~ONFIAnalyzer();
 	/**
 		*  @brief SetupResults
-		*  @details this function set up the channel that will show up
+		*  @details This function set up the channel that will show up
 		* the resulat of our Analyzer on Saleae's software
 		*********************************/
 	virtual void SetupResults();
 	/**
 	*  @brief WorkerThread
-	*  @details this function is the heart of our Analyzer, here we analyze the onfi protocol
+	*  @details This function is the heart of our Analyzer, here we analyze the onfi protocol
 	*******************/
 	virtual void WorkerThread();
 
@@ -70,12 +70,16 @@ public:
 	virtual const char* GetAnalyzerName() const;
 	/**
 	*  @brief NeedsRerun
-	*	@details this function is called when the analyzer has finished
+	*	@details This function is called when the analyzer has finished
 	*  @return true for run over again the same data or false to not
 	**/
 	virtual bool NeedsRerun();
-
-	U8 SyncAndReadDQ(U64 sample_number);
+	/**
+	*  @brief readData
+	*	@details This function enable to read the data of channel DQ and decode it
+	*
+	**/
+	U8 readData(U64 sample_number);
 	bool AddFrame(FrameType frame_type,
 										U64 start,
 										U64 end = 0,
@@ -110,7 +114,9 @@ public:
 										void analyzerNVDDRxx();
 
 protected: //vars
+	/// @details	The ONFIAnalyzerSettings's object
 	std::auto_ptr< ONFIAnalyzerSettings > mSettings;
+		/// @details  The ONFIAnalyzerResults's object
 	std::auto_ptr< ONFIAnalyzerResults > mResults;
 
 

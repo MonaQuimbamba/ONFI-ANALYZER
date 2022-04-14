@@ -2,26 +2,6 @@
 #include <AnalyzerHelpers.h>
 
 
-/**
-* @brief consctructor
-*  @details it'll build the settings for our analyzer , set up  each signal on one channel
-*  @param   mALEChannel  Address latch enable: Loads an address from I/O[7:0] into the address register
-*  @param mCEChannel Chip enable: Enables or disables one or more die (LUNs) in a target.
-*  @param mCLEChannel Command latch enable: Loads a command from I/O[7:0] into the command register.
-*  @param mLOCKChannel When LOCK is HIGH during power-up, the BLOCK LOCK function is enabled. To disable the
-	BLOCK LOCK, connect LOCK to VSS during power-up, or leave it disconnected (internal
-	pull-down).
-*
-*  @param mREChannel Read enable: Transfers serial data from the NAND Flash to the host system.
-*  @param mWEChannel Write enable: Transfers commands, addresses, and serial data from the host system to the NAND Flash.
-*
-*  @param mWPChannel Write protect: Enables or disables array PROGRAM and ERASE operations
-*  @param mIOChannel Data inputs/outputs: The bidirectional I/Os transfer address, data, and command infor-
-mation.
-*  @param mRBChannel Ready/busy: An open-drain, active-low output that requires an external pull-up resistor.
-This signal indicates target array activity.
-*  @param  mBitRate
-*********************************/
 
 
 ONFIAnalyzerSettings::ONFIAnalyzerSettings()
@@ -41,8 +21,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 	mDQ_6Channel( UNDEFINED_CHANNEL ),
 	mDQ_7Channel( UNDEFINED_CHANNEL )
 {
-    /// @details Setting up each AnalyzerSettingInterface object
-		// for the moment only AnalyzerSettingInterfaceChannel
+
 		mALEChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
 		mALEChannelInterface->SetTitleAndTooltip( "ALE", "Address latch enable" );
 		mALEChannelInterface->SetChannel( mALEChannel );
@@ -77,10 +56,6 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mDQSChannelInterface->SetTitleAndTooltip(  "DQS ", "Data" );
 		mDQSChannelInterface->SetChannel( mDQSChannel );
 		mDQSChannelInterface->SetSelectionOfNoneIsAllowed( true );
-
-
-		//******************************//
-
 
 		mDQChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
 		mDQChannelInterface->SetTitleAndTooltip( "DQ0", "data" );
@@ -122,8 +97,6 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		mDQ_7ChannelInterface->SetChannel( mDQ_7Channel );
 		mDQ_7ChannelInterface->SetSelectionOfNoneIsAllowed( true );
 
-				//*****************************//
-
 		AddInterface( mALEChannelInterface.get() );
 		AddInterface( mCEChannelInterface.get() );
 		AddInterface( mCLEChannelInterface.get() );
@@ -142,18 +115,11 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 		AddInterface( mDQ_7ChannelInterface.get() );
 
 
-
-/// @details Specifying the export options
 	AddExportOption( 0, "Export as text/csv file" );
 	AddExportExtension( 0, "text", "txt" );
 	AddExportExtension( 0, "csv", "csv" );
 
-/// @details Specifying which channels are in use
-/*
-* The analyzer must indicate which channel(s) it is using.
-* This is done with the AddChannel function.
- Every time the channel changes (such as when the user changes the channel) the reported channel must be updated. To clear any previous channels that have been set, call ClearChannels.
-*/
+
 	ClearChannels();
 	AddChannel( mALEChannel, "ALE", false );
 	AddChannel( mCEChannel, "CE", false );
@@ -174,18 +140,12 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 
 }
 
-/**
-*  @brief Destructor
-* @details we won't to do anything
-*************************/
+
 ONFIAnalyzerSettings::~ONFIAnalyzerSettings()
 {
 }
 
-/**
-*  @brief this function will copy the values saved in our interface objects to
-*  our settings variables
-**********************/
+
 /*
 For example, when using more than one channel,
 you would typically want to make
@@ -242,11 +202,6 @@ bool ONFIAnalyzerSettings::SetSettingsFromInterfaces()
 	return true;
 }
 
-/**
-*  @brief this function will copy the values saved in our interface ojbects to
-*  our settings variables
-**********************/
-
 void ONFIAnalyzerSettings::UpdateInterfacesFromSettings()
 {
 		mALEChannelInterface->SetChannel( mALEChannel );
@@ -268,10 +223,6 @@ void ONFIAnalyzerSettings::UpdateInterfacesFromSettings()
 
 }
 
-/**
-*  @brief this function will  serialize all variables set upped
-*
-******/
 
 void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 {
@@ -295,7 +246,7 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	text_archive >> mDQ_5Channel;
 	text_archive >> mDQ_6Channel;
 	text_archive >> mDQ_7Channel;
-/// @brief  Since our channel values may have changed, we will also need to update the channels we’re reporting as using. We need to do this every times settings change.
+
 	ClearChannels();
 	AddChannel( mALEChannel, "ALE", mALEChannel != UNDEFINED_CHANNEL );
 	AddChannel( mCEChannel, "CE", mCEChannel != UNDEFINED_CHANNEL );
@@ -314,14 +265,10 @@ void ONFIAnalyzerSettings::LoadSettings( const char* settings )
 	AddChannel( mDQ_5Channel, "DQ", mDQ_5Channel != UNDEFINED_CHANNEL );
 	AddChannel( mDQ_6Channel, "DQ", mDQ_6Channel != UNDEFINED_CHANNEL );
 	AddChannel( mDQ_7Channel, "DQ", mDQ_7Channel != UNDEFINED_CHANNEL );
-
- /// @bried This will update all our interfaces to reflect the newly loaded values.
 	UpdateInterfacesFromSettings();
 }
 
-/**
-* @breif this function will save all of our settings variables into a single string
-*****/
+
 const char* ONFIAnalyzerSettings::SaveSettings()
 {
 	SimpleArchive text_archive;

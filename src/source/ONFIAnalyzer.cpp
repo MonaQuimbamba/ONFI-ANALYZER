@@ -24,7 +24,7 @@ void ONFIAnalyzer::SetupResults()
 		mResults->AddChannelBubblesWillAppearOn( mSettings->mCEChannel);
 }
 
-U8 ONFIAnalyzer::SyncAndReadDQ(U64 sample_number)
+U8 ONFIAnalyzer::readData(U64 sample_number)
 {
 						U8 data = 0;
 
@@ -110,7 +110,7 @@ void ONFIAnalyzer::analyzerNVDDRxx()
 										if (data_cycle)
 										{
 																	// TODO in some cases, DQ should be centered, not edge
-																	U8 data = SyncAndReadDQ(first_edge);
+																	U8 data = readData(first_edge);
 
 																	// this is extremely fragile for some reason...Logic likes getting mad
 																	U64 end = ce_n_r - 1;
@@ -156,7 +156,7 @@ void ONFIAnalyzer::analyzerNVDDRxx()
 												}
 												if (frame_type != kInvalid)
 												{
-														U8 data = SyncAndReadDQ(we_n_r);
+														U8 data = readData(we_n_r);
 														AddFrame(frame_type, we_n_r, end, data);
 												}
 								}
@@ -201,7 +201,10 @@ bool ONFIAnalyzer::NeedsRerun()
 {	return false;}
 
 U32 ONFIAnalyzer::GenerateSimulationData( U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor** simulation_channels )
-{	return 0;}
+{
+		//not implemented
+	return 0;
+}
 
 U32 ONFIAnalyzer::GetMinimumSampleRateHz()
 {	return 0;}
@@ -274,7 +277,7 @@ void DestroyAnalyzer( Analyzer* analyzer )
 													if (data_cycle)
 													{
 																				// TODO in some cases, DQ should be centered, not edge
-																				U8 data = SyncAndReadDQ(first_edge);
+																				U8 data = readData(first_edge);
 
 																				// this is extremely fragile for some reason...Logic likes getting mad
 																				U64 end = ce_n_r - 1;
@@ -320,7 +323,7 @@ void DestroyAnalyzer( Analyzer* analyzer )
 															}
 															if (frame_type != kInvalid)
 															{
-																	U8 data = SyncAndReadDQ(we_n_r);
+																	U8 data = readData(we_n_r);
 																	AddFrame(frame_type, we_n_r, end, data);
 															}
 											}
@@ -401,7 +404,7 @@ while(true)
 																	 }
 																	 if (frame_type != kInvalid)
 																	 {
-																			 U8 data = SyncAndReadDQ(we_n_r);
+																			 U8 data = readData(we_n_r);
 																			 AddFrame(frame_type, we_n_r, end, data);
 																	 }
 										 }

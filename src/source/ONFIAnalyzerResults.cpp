@@ -8,30 +8,17 @@
 #include <iomanip>
 
 
-/**
-* @brief Consctructor
-*  @details ...
-*
-***************************************/
+
 ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSettings* settings )
 :	AnalyzerResults(),
 	mSettings( settings ),
 	mAnalyzer( analyzer )
 {
 }
-/**
-* @brief Destructor
-*  @details ...
-*
-***************************************/
+
 ONFIAnalyzerResults::~ONFIAnalyzerResults()
 {
 }
-
-/**
-* @brief function GenerateBubbleText
-* @details
-***************************/
 
 
 struct HexCharStruct
@@ -66,27 +53,23 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 	  switch (ft)
 		{
 			  case ONFIAnalyzer::FrameType::kEnvelope:
-			    // this is a fake type
+
 			    return;
 			  case ONFIAnalyzer::FrameType::kCommand:
-				    //text = 'c';//fmt::format("CMD:{:02x}", data);
+
 
 						ss << hex(data);
 						ss >> s;
 						text = "CMD: "+s;
 				    break;
 			  case ONFIAnalyzer::FrameType::kAddress:
-					    //text = 'a' ;//fmt::format("ADDR:{:02x}", data);
-							//std::string s;
-							//std::stringstream ss;
+
 							ss << hex(data);
 							ss >> s;
 							text = "ADDR: "+s;
 					    break;
 			  case ONFIAnalyzer::FrameType::kData:
-					    //text = 'd';//fmt::format("DATA:{:02x}", data);
-							//std::string s;
-							//std::stringstream ss;
+
 							ss << hex(data);
 							ss >> s;
 							text = "DATA: "+s;
@@ -141,7 +124,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 										 }
 										 for (const auto& addr : e.data)
 										 {
-												 //line += fmt::format("{:02x}", addr);
+
 													std::string s;
 								 					std::stringstream ss;
 								 					ss << hex(addr);
@@ -165,8 +148,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 												 std::vector<U8> vect;
 												 vect.push_back(data);
 												 cycle.data=vect;
-												 packet->emplace_back(cycle);//Cycle{.frame_type = frame_type, .data = {data}});
-										 }
+												 packet->emplace_back(cycle);
 				};
 
 				const U64 num_frames = GetNumFrames();
@@ -217,11 +199,11 @@ void ONFIAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase
 
 void ONFIAnalyzerResults::GeneratePacketTabularText( U64 packet_id, DisplayBase display_base )
 {
-	//not supported
+	//not implemented
 
 }
 
 void ONFIAnalyzerResults::GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base )
 {
-	//not supported
+	//not implemented
 }
