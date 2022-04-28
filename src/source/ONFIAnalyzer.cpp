@@ -222,7 +222,7 @@ void DestroyAnalyzer( Analyzer* analyzer )
 {	delete analyzer;}
 
 
-/*
+/* may be
 // get all data from channel
 				ceChannel = GetAnalyzerChannelData( mSettings->mCEChannel);
 				aleChannel = GetAnalyzerChannelData( mSettings->mALEChannel);
@@ -339,8 +339,7 @@ void DestroyAnalyzer( Analyzer* analyzer )
 					}
 */
 
-/*
-
+/* good too 
 // get all data from channel
 ceChannel = GetAnalyzerChannelData( mSettings->mCEChannel);
 aleChannel = GetAnalyzerChannelData( mSettings->mALEChannel);
@@ -350,7 +349,14 @@ reChannel = GetAnalyzerChannelData( mSettings->mREChannel);
 rbChannel= GetAnalyzerChannelData( mSettings->mRBChannel);
 dqsChannel= GetAnalyzerChannelData( mSettings->mDQSChannel);
 // list of all  channels datas to do
-dqChannel = GetAnalyzerChannelData( mSettings->mDQChannel);
+dqChannel[0] = GetAnalyzerChannelData( mSettings->mDQChannel);
+dqChannel[1] = GetAnalyzerChannelData( mSettings->mDQ_1Channel);
+dqChannel[2] = GetAnalyzerChannelData( mSettings->mDQ_2Channel);
+dqChannel[3] = GetAnalyzerChannelData( mSettings->mDQ_3Channel);
+dqChannel[4] = GetAnalyzerChannelData( mSettings->mDQ_4Channel);
+dqChannel[5] = GetAnalyzerChannelData( mSettings->mDQ_5Channel);
+dqChannel[6] = GetAnalyzerChannelData( mSettings->mDQ_6Channel);
+dqChannel[7] = GetAnalyzerChannelData( mSettings->mDQ_7Channel);
 
 auto& ce_n = ceChannel;
 auto& ale =  aleChannel;
@@ -359,7 +365,7 @@ auto& we_n = weChannel;
 auto& re = reChannel;
 auto& rb = rbChannel;
 auto& dqs = dqsChannel;
-auto& dq = dqChannel;
+auto& dq = dqChannel[0];
 
 
 while(true)
@@ -432,8 +438,5 @@ while(true)
 			mResults->AddMarker(ce_n_r, AnalyzerResults::MarkerType::Stop, mSettings->mCEChannel);
 			mResults->CommitPacketAndStartNewPacket();
 			mResults->CommitResults();
-
-}
-
-
+	}
 */
