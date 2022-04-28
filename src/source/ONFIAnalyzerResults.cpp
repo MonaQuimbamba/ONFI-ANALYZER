@@ -84,6 +84,7 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 
 void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase display_base, U32 export_type_user_id )
 {
+
 					std::ofstream file_stream(file, std::ios::out);
 					struct Cycle
 					{
@@ -149,6 +150,7 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 												 vect.push_back(data);
 												 cycle.data=vect;
 												 packet->emplace_back(cycle);
+											}
 				};
 
 				const U64 num_frames = GetNumFrames();
@@ -184,6 +186,8 @@ void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase disp
 				write_packet(merged_packet);
 				UpdateExportProgressAndCheckForCancel(num_frames, num_frames);
 }
+
+
 
 void ONFIAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase display_base )
 {

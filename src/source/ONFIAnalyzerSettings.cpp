@@ -129,7 +129,7 @@ ONFIAnalyzerSettings::ONFIAnalyzerSettings()
 	AddChannel( mRBChannel, "RB", false );
 	AddChannel( mDQSChannel, "DQS", false );
 
-	AddChannel( mDQChannel, "DQ", false );
+	AddChannel( mDQChannel,   "DQ", false );
 	AddChannel( mDQ_1Channel, "DQ", false );
 	AddChannel( mDQ_2Channel, "DQ", false );
 	AddChannel( mDQ_3Channel, "DQ", false );
