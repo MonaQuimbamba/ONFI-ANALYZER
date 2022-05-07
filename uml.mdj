@@ -184,7 +184,7 @@
 											"top": 222,
 											"width": 390,
 											"height": 13,
-											"text": "+SyncAndReadDQ()",
+											"text": "+readData()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -237,13 +237,30 @@
 											"height": 13,
 											"text": "+ONFIAnalyzer()",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGAlaV7t3HvbKw=",
+											"_parent": {
+												"$ref": "AAAAAAGAhlUh+YPY3tc="
+											},
+											"model": {
+												"$ref": "AAAAAAGAlaV7l3HsYbk="
+											},
+											"font": "Arial;13;0",
+											"left": 501,
+											"top": 282,
+											"width": 390,
+											"height": 13,
+											"text": "+analyzerNVDDRxx()",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 496,
 									"top": 187,
 									"width": 400,
-									"height": 98
+									"height": 113
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2968,7 +2985,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGAhlUh84PP3Yc="
 							},
-							"name": "SyncAndReadDQ"
+							"name": "readData"
 						},
 						{
 							"_type": "UMLOperation",
@@ -2993,6 +3010,14 @@
 								"$ref": "AAAAAAGAhlUh84PP3Yc="
 							},
 							"name": "ONFIAnalyzer"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGAlaV7l3HsYbk=",
+							"_parent": {
+								"$ref": "AAAAAAGAhlUh84PP3Yc="
+							},
+							"name": "analyzerNVDDRxx"
 						}
 					]
 				},
