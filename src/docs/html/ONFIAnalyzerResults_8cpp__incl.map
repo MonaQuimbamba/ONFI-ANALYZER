@@ -1,0 +1,6 @@
+<map id="source/ONFIAnalyzerResults.cpp" name="source/ONFIAnalyzerResults.cpp">
+<area shape="rect" id="node2" href="$ONFIAnalyzerResults_8h.html" title="This class translates saved results into hex string value for a variety of uses. Here we&#39;ll start thi..." alt="" coords="223,155,385,181"/>
+<area shape="rect" id="node9" href="$ONFIAnalyzer_8h.html" title="ONFIAnalyzer.h" alt="" coords="461,80,577,107"/>
+<area shape="rect" id="node14" href="$ONFIAnalyzerSettings_8h.html" title="this fucntion will define the settings our analyzer needs, and create interfaces that’ll allow the L..." alt="" coords="782,80,946,107"/>
+<area shape="rect" id="node11" href="$ONFISimulationDataGenerator_8h.html" title="this class will generate simulated data that can be later to test the analyzer, or provide an example..." alt="" coords="460,155,671,181"/>
+</map>

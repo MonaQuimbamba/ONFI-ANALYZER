@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workerthread',['WorkerThread',['../classONFIAnalyzer.html#addc570440eb966edc508b34379af2aa4',1,'ONFIAnalyzer']]]
+  ['readdata',['readData',['../classONFIAnalyzer.html#a6345a313292e6c93d754f4346d6f53e2',1,'ONFIAnalyzer']]]
 ];

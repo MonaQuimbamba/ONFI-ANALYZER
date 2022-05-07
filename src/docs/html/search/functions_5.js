@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['needsrerun',['NeedsRerun',['../classONFIAnalyzer.html#a98a330c789f1ee68d3c6da4cb1e82d73',1,'ONFIAnalyzer']]]
+  ['initialize',['Initialize',['../classONFISimulationDataGenerator.html#ab0c6832486a704eece59219eaa4138a2',1,'ONFISimulationDataGenerator']]]
 ];

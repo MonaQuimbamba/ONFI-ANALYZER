@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['createanalyzer',['CreateAnalyzer',['../ONFIAnalyzer_8cpp.html#a4608a9372194d846566ab8c094e75dfb',1,'CreateAnalyzer():&#160;ONFIAnalyzer.cpp'],['../ONFIAnalyzer_8h.html#ab8db32c26fd09542251635132fce2c2f',1,'CreateAnalyzer():&#160;ONFIAnalyzer.cpp']]],
-  ['createserialbyte',['CreateSerialByte',['../classONFISimulationDataGenerator.html#a22084c61425879f1707e5c026ecaa8de',1,'ONFISimulationDataGenerator']]]
+  ['addframe',['AddFrame',['../classONFIAnalyzer.html#a3c166e8a10d74c8fdc7242b356f5bb5b',1,'ONFIAnalyzer']]],
+  ['analyzernvddrxx',['analyzerNVDDRxx',['../classONFIAnalyzer.html#a764dab50e83cc25adafc387ed1869040',1,'ONFIAnalyzer']]]
 ];

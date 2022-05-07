@@ -9,30 +9,17 @@
 
 #include <cstdint>
 
-/**
-* @brief Consctructor
-*  @details ...
-*
-***************************************/
+
 ONFIAnalyzerResults::ONFIAnalyzerResults( ONFIAnalyzer* analyzer, ONFIAnalyzerSettings* settings )
 :	AnalyzerResults(),
 mSettings( settings ),
 mAnalyzer( analyzer )
 {
 }
-/**
-* @brief Destructor
-*  @details ...
-*
-***************************************/
+
 ONFIAnalyzerResults::~ONFIAnalyzerResults()
 {
 }
-
-/**
-* @brief function GenerateBubbleText
-* @details
-***************************/
 
 
 struct HexCharStruct
@@ -70,6 +57,7 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 		std::stringstream ss;
 		switch (ft)
 		{
+<<<<<<< HEAD
 			case ONFIAnalyzer::FrameType::kEnvelope:
 			// this is a fake type
 			return;
@@ -110,6 +98,47 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 			ONFIAnalyzer::FrameType frame_type{ONFIAnalyzer::FrameType::kInvalid} ;
 			std::vector<U8> data;
 		};
+=======
+			  case ONFIAnalyzer::FrameType::kEnvelope:
+
+			    return;
+			  case ONFIAnalyzer::FrameType::kCommand:
+
+
+						ss << hex(data);
+						ss >> s;
+						text = "CMD: "+s;
+				    break;
+			  case ONFIAnalyzer::FrameType::kAddress:
+
+							ss << hex(data);
+							ss >> s;
+							text = "ADDR: "+s;
+					    break;
+			  case ONFIAnalyzer::FrameType::kData:
+
+							ss << hex(data);
+							ss >> s;
+							text = "DATA: "+s;
+					    break;
+	  }
+
+			AddResultString(text.c_str());
+
+}
+
+
+
+void ONFIAnalyzerResults::GenerateExportFile( const char* file, DisplayBase display_base, U32 export_type_user_id )
+{
+
+					std::ofstream file_stream(file, std::ios::out);
+					struct Cycle
+					{
+					  ONFIAnalyzer::FrameType frame_type{ONFIAnalyzer::FrameType::kInvalid} ;
+					  std::vector<U8> data;
+					};
+>>>>>>> version_1
 
 		using Packet = std::vector<Cycle>;
 		Packet merged_packet;
@@ -123,6 +152,7 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 			{
 				if (first)
 				{
+<<<<<<< HEAD
 					first = false;
 				}
 				else
@@ -131,6 +161,66 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 				}
 
 				switch (e.frame_type)
+=======
+						 if (!packet.size()) { return; }
+						 std::string line;
+						 bool first = true;
+						 for (const auto& e : packet)
+						 {
+										 if (first)
+										 {
+											 first = false;
+										 }
+										 else
+										 {
+											 line += " ";
+										 }
+
+										 switch (e.frame_type)
+										 {
+													 case ONFIAnalyzer::FrameType::kCommand:
+														 line += "CMD:";
+														 break;
+													 case ONFIAnalyzer::FrameType::kAddress:
+														 line += "ADDR:";
+														 break;
+													 case ONFIAnalyzer::FrameType::kData:
+														 line += "DATA:";
+														 break;
+										 }
+										 for (const auto& addr : e.data)
+										 {
+
+													std::string s;
+								 					std::stringstream ss;
+								 					ss << hex(addr);
+								 					ss >> s;
+													line+= s;
+										 }
+				 			}
+				 			file_stream << line << std::endl;
+				};
+
+				auto append_cycle = [](Packet* packet, ONFIAnalyzer::FrameType frame_type,U8 data)
+				{
+										 if (packet->size() && packet->back().frame_type == frame_type)
+										 {
+											 packet->back().data.push_back(data);
+										 }
+										 else
+										 {
+												 Cycle cycle ;
+												 cycle.frame_type=frame_type;
+												 std::vector<U8> vect;
+												 vect.push_back(data);
+												 cycle.data=vect;
+												 packet->emplace_back(cycle);
+											}
+				};
+
+				const U64 num_frames = GetNumFrames();
+				for (U64 frame_index = 0; frame_index < num_frames; frame_index++)
+>>>>>>> version_1
 				{
 					case ONFIAnalyzer::FrameType::kCommand:
 					line += "CMD:";
@@ -156,6 +246,7 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 			file_stream << line << std::endl;
 		};
 
+<<<<<<< HEAD
 		auto append_cycle = [](Packet* packet, ONFIAnalyzer::FrameType frame_type,U8 data)
 		{
 			if (packet->size() && packet->back().frame_type == frame_type)
@@ -209,6 +300,12 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 
 	void ONFIAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase display_base )
 	{
+=======
+
+
+void ONFIAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase display_base )
+{
+>>>>>>> version_1
 		#ifdef SUPPORTS_PROTOCOL_SEARCH
 		Frame frame = GetFrame( frame_index );
 		ClearTabularText();
@@ -219,13 +316,26 @@ void ONFIAnalyzerResults::GenerateBubbleText( U64 frame_index,
 		#endif
 	}
 
+<<<<<<< HEAD
 	void ONFIAnalyzerResults::GeneratePacketTabularText( U64 packet_id, DisplayBase display_base )
 	{
 		//not supported
+=======
+void ONFIAnalyzerResults::GeneratePacketTabularText( U64 packet_id, DisplayBase display_base )
+{
+	//not implemented
+>>>>>>> version_1
 
 	}
 
+<<<<<<< HEAD
 	void ONFIAnalyzerResults::GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base )
 	{
 		//not supported
 	}
+=======
+void ONFIAnalyzerResults::GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base )
+{
+	//not implemented
+}
+>>>>>>> version_1
